@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://www.squirrel-electronics.com/sitemap.xml
