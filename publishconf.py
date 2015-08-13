@@ -21,11 +21,11 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "squirrel-electronics"
-GOOGLE_ANALYTICS = "UA-65976997-1"
+GOOGLE_ANALYTICS_UNIVERSAL = "UA-65976997-1"
 
 
-PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['sitemap','gzip_cache']
+#PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS = PLUGINS + ['sitemap','gzip_cache']
 
 #sitemap config
 SITEMAP = {

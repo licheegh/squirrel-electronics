@@ -1,7 +1,7 @@
 Title: 用Matplotlib显示实时信号
 Date: 2015-04-05 16:01
 Category: Python
-Tags: Matplotlib,animation
+Tags: Matplotlib,animation,python
 
 ##由来
 

@@ -4,7 +4,9 @@ Category: DSP
 Tags: fm解调,fm立体声解调,fm stereo demod
 Status: draft
 
+[TOC]
 
+###前言
 在完成了FM解调后, 我考虑是开始搞硬件呢? 还是搞立体声解调. 于是我花了一天的时间来研究一下看有没有思路, 结论是: 完全不明白该怎么写. 好吧我还是老老实实搞立体声解调吧~
 
 我在wiki上看到了详解,[FM broadcasting - Stereo FM](https://en.wikipedia.org/wiki/FM_broadcasting#Stereo_FM). 我的理解是这样的, 对于非立体声FM来说, 就是音频(基带)直接FM调制到100多M, 而立体声的FM对音频(基带)信号做了手脚, 可以看下面这个图, 图来自wiki.
@@ -31,14 +33,18 @@ Status: draft
 
 这图好评啊, 令完全理解不能的我一下子就理解了该如何做. 其中m(t)就是已经fm解调了的信号. 那个rds和57k是数字的,不管它. 那么剩下的都不难, 一堆滤波器和乘法加法. 但那个倍频器是啥? 我学到现在怎么没听说倍频是怎么玩的? 我只听说有种叫(D)PLL的神秘东西可以倍频并锁相, 难道要实现一个DPLL么?
 
-####Paper: FM Stereo Receiver Based on Software-Defined Radio
+----
+
+###Paper: FM Stereo Receiver Based on Software-Defined Radio
 
 在[这篇paper](http://www.globalcis.org/jdcta/ppl/JDCTA884PPL.pdf)里, 武汉大学的同学对于这个倍频采取的方法是"2 octave", 我搜了半天, 无解, 于是研究了一下里面fpga的连线图, 就是一个简单的平方. 平方可以倍频? 把波形的下半部分移到上半部分就倍频了.       
 [Frequency of output of full-wave rectifier](http://electronics.stackexchange.com/questions/86447/frequency-of-output-of-full-wave-rectifier)  
 [Why does rectification of a digital signal double the frequency content?](http://electronics.stackexchange.com/questions/11757/why-does-rectification-of-a-digital-signal-double-the-frequency-content)  
 这样子做有一些问题, 首先是dc offset, 然后这个正弦波肯定不如原来纯. 那么还有啥先进的方法呢?
 
-####US7181018B1 Digital Stereo Recovery Circuitry and Method for Radio Receivers
+----
+
+###US7181018B1 Digital Stereo Recovery Circuitry and Method for Radio Receivers
 
 找了一圈很无奈的我决定翻专利, 痛苦... 在这个Cirrus Logic公司的patent中, 描述了一个pilot doubler的东东. 
 
@@ -52,7 +58,9 @@ Status: draft
 
 那么这个方法也可以理解为PLL法.
 
-####US7079657B2 System and Method of Performing Digital Multi-Channel Audio Signal Decoding
+----
+
+###US7079657B2 System and Method of Performing Digital Multi-Channel Audio Signal Decoding
 
 专利为高通的. 在摘要部分说是用于BTSC解调的, BTSC是啥? [Encoder's Spare Channel Embeds Whole-House Stereo Audio in Satellite Set-Top-Box Designs Stably and Cost-Effectively](http://www.analog.com/library/analogDialogue/archives/39-07/btsc.html) ADI的这篇文章介绍了一下, 和FM Stereo差不多哦~[AD1970](http://www.analog.com/media/en/technical-documentation/data-sheets/AD1970.pdf)的说明书也说BTSC的立体声与FM 立体声类似, ADI说了三种方法
 
@@ -68,7 +76,9 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 当然这还是用的类PLL技术.
 
-####US5404405 FM Stereo Decoder and Method Using Digital Signal Processing
+----
+
+###US5404405 FM Stereo Decoder and Method Using Digital Signal Processing
 
 公司为Hughes Aircraft Company, 做飞机的公司搞这个干啥? [Hughes @ wiki](https://en.wikipedia.org/wiki/Hughes_Aircraft_Company) 这公司NB, 什么直升机, 卫星, 导弹. 在1994年时搞了[DirectTV](https://zh.wikipedia.org/wiki/DirecTV), 所以在93年搞一个这样的专利可以理解.
 
@@ -86,7 +96,9 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 接下来乘2, 据说是传统方法, 为了和L+R匹配. GA为Gain Adjust的意思. OK, 至此核心部分就这些了. **这个方法是很容易理解的, 计算起来也不是很复杂, 很有吸引力哦~**, 因此也可以理解为啥这个专利目前还是已生效状态.
 
-####US8406717B1 Digital FM Stereo Receiver Architecture to Recover Carrier Information Based On Stereo or Mono Signals 
+----
+
+###US8406717B1 Digital FM Stereo Receiver Architecture to Recover Carrier Information Based On Stereo or Mono Signals 
 
 此乃Marvell公司的专利, 08年还是蛮新的哦.
 
@@ -100,7 +112,9 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 方法是由450来将平方后信号中的38k除去, 而后在460取反, 那么这里的信号就是1/噪声, 然后再乘38k, 这样子就把这个噪声去掉了.(这和BPF有毛区别?) 那个开关来控制是否使用的这个功能, 还可以定期更新, 等.
 
-####US5471534 Devices, Systems and Methods for Composite Signal Decoding Employing Interpolation Filter 
+----
+
+###US5471534 Devices, Systems and Methods for Composite Signal Decoding Employing Interpolation Filter 
 
 来自TI, 看到配图后我震惊了, TI有诚意啊. Marvell那图画的真是烂啊.
 
@@ -116,7 +130,7 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 接下来在17位置做19k这一点的DFT, 这里输出的I与Q为频域的也就是DFT的输出, 然后求相位, DFT长为128, 这个DFT的计算是有固定的周期的, 首先要保证Pilot最多会在DFT之间飘移6.43度, 而pilot最多会偏出2Hz, TI说这相当于720度/秒, 也就是8.93ms偏6.43度. 然后用8.93ms和152k的fs算出每1357(计算: 8.93/(1/152k) )个sample算一次DFT. 说实话我完全没看懂这是怎么算出来的.
 
-27这个位置算出的相位被用于选择13这个滤波器的核, 而19这个位置算出的19k的幅度被用于产生一个19k信号, 在21中, 共有4个值(sin(n*pi/4), n=1,3,5,7)(明明是8个啊, 152k的采样率, 19k的信号, 难道不是8个一个周期吗?莫非产生的是38k的信号?) 这4个值的幅度由19控制, 然后由25与13的输出一起计算来去掉原信号中的19k.
+27这个位置算出的相位被用于选择13这个滤波器的核, 而19这个位置算出的19k的幅度被用于产生一个19k信号, 在21中, 共有4个值(sin(n * pi/4), n=1,3,5,7)(明明是8个啊, 152k的采样率, 19k的信号, 难道不是8个一个周期吗?莫非产生的是38k的信号?) 这4个值的幅度由19控制, 然后由25与13的输出一起计算来去掉原信号中的19k.
 
 然后...然后TI给出了源代码...而且每个语句都有注释, TI这是啥意思? 发个专利专门宣传C30这个DSP吗? 另外关键算法竟然是用汇编写的, 于是我默默打开了[TMS320C3x User’s Guide](http://www.ti.com/lit/ug/spru031f/spru031f.pdf)
 
@@ -128,7 +142,7 @@ LDI load integer, 前放后.
 SUBF 的意思是浮点减, 前减后,结果放后边.  
 NOP 后边这个意思是进行一次dummy read, 应该是让指针+1的意思.  
 
-那么这一段的意思是:幅度*4个值的振荡器(为前述的sin(x)), 也就是得出了修正的38k频率. 然后用R0中的值减去它.
+那么这一段的意思是:幅度 * 4个值的振荡器(为前述的sin(x)), 也就是得出了修正的38k频率. 然后用R0中的值减去它.
 
 ![US5471534 pilot assembly code][12]
 然后该R2的值根据R1中的值来选择是输出左或右声道. 不是要恢复出38k然后mix的吗? 这么选择不同的数据就可以把L和R都搞出来了? 这时我想到了前面文档关于那个滤波器13说了一堆, 什么插值, 什么相位, 这滤波器如此神奇?
@@ -137,9 +151,11 @@ TI说滤波器13由一个polyphase的LPF构成, 通带截至频率为53k, 阻带
 
 OK, 在研究了一段时间后我发现完全不可理解, 我明白polyphase的这种滤波器可以在滤波插值的同时做下变频, 但那个L+R之类的东西要做加减法的, 滤波器连这个也顺便搞定了么? 在看到ref列表中有TI一个1991年的专利, 好吧, 我研究下那个.
 
-US5239585文中开头提到US4723288这个专利, 这个是Motorola(现在是Freescale)在1986年的专利, OK, 那先搞这个.
+1991年的US5239585文中开头提到US4723288这个专利, 这个是Motorola(现在是Freescale)在1986年的专利, OK, 那先搞这个.
 
-####US4723288 Stereo Decoding by Direct Time Sampling
+----
+
+###US4723288 Stereo Decoding by Direct Time Sampling
 
 1986年~和我差不多大哦~
 
@@ -147,7 +163,7 @@ US5239585文中开头提到US4723288这个专利, 这个是Motorola(现在是Fre
 
 ![US4723288 stereo decoder][13]
 
-此图为moto的方案, 到C那个位置, 后边两个mixer取名为Sampler(采样器), 下面乘的是单位脉冲函数, 频率为38k, 与pilot用PLL同步, 也可以理解为再此ADC. 两个samper的周期差180度, 左声道为19k信号的45度和225度,右边为135度和315度.  然后LP后直接出L和R. moto给了个奇怪的公式, 这式子如何和那些东西联系起来的?
+此图为moto的方案, 到C那个位置, 后边两个mixer取名为Sampler(采样器), 下面乘的是单位脉冲函数, 频率为38k, 与pilot用PLL同步, 也可以理解为再此ADC. **两个samper的周期差180度, 左声道为19k信号的45度和225度,右边为135度和315度.  然后LP后直接出L和R.** moto给了个奇怪的公式, 这式子如何和那些东西联系起来的?
 
 ![US4723288 digital form][14]
 
@@ -155,9 +171,123 @@ US5239585文中开头提到US4723288这个专利, 这个是Motorola(现在是Fre
 
 好吧我还是看看TI的这一篇吧.
 
-####US5239585 Devices, Systems, and Methods for Composite Signal Decoding
+----
 
-![US5239585 demod ][14]
+###US5239585 Devices, Systems, and Methods for Composite Signal Decoding
+
+在摘要中, TI说这个方案不需要采样与Pilot的相位同步, 才用一个叫曲线拟合滤波器的东西来做插值, 而这个滤波器的核是由一个选择器确定的, 这个选择器由相位测量来获得本振与Pilot之间的相位差来选择滤波器的核. 因此可以不用同步, 且输出采样率也可以随便选.
+
+那么这个和US5471534是差不多的原理.
+
+![US5239585 stereo demod][15]
+
+然后TI讲了一下他对US4723288的理解. 
+
+![US5239585 equ 1][16]
+
+当38k的载波sin(2ωt)等于+1或者-1时, fm(t)分别等于2L和2R, 再加上19k的pilot. 由于载波是和19k的pilot同步的, 因此pilot就可以用于判断合适应该做sample. 那么这些位置位于pilot的相位在奇数 * 45的位置(也就是45 * 1 = 45度, 45 * 3 = 135度, 45 * 5 = 225度, 45 * 7 = 315度).
+
+好吧, 很简单的道理.
+
+TI也说了一下moto这个东东的缺点, 他说如果相位差了一点儿, 那么就会导致信号的衰减. 所以之前那个专利里, 用了一下PLL, 说这个东东不好实现, 而且这个实现还需要是38k的整数倍.
+
+总的来说这个方案和US5471534的方案基本原理是完全一样的, 只是具体各部分的实现方式不同. 1000部分的功能就是之前的FFT功能, 3000中的和之前的基本一样, 2000中的有些小区别. 所谓的Curve-Fitting就是在插0值后进行的LP滤波.
+
+为啥要插值呢? 滤波器126的采样率为152k, 也就是在19k时, 每周期8次, 如下图, 在0度, 45度, 90度....位置采样, 当然这是在内部采样时钟与输入信号完全同步的情况下. 那么这时, 把前述的那几个角度的采样点的值直接搞出来就是L和R了. 当不同步时, 如输入和采样差15度, 那么在45度采样的值实际上是在30度的, 如果想要45度的采样点, 则需要取得60度时的值, 那么这时, 就可以用插值来得出60度的值.
+
+![US5239585 phasor][17]
+
+图中为插2个点(3:1 插值), 则共有8+8*N, N=2, 也就是24个点. 那么这时的分辨率为360/24=15度. 采样率由152k升为456k. TI说多用的是插6个点也就是7:1的插值, 分辨率为360/56=6.43度. 采样率为1.064M
+
+![US5239585 equ 2][18]
+
+首先, 设L为0, R为1, 那么equ1 就简化为 equ2, 但其中pilot已经删掉了, 加入了一个θ, 也就是要求的角度. 那么要30dB的分离度, 那么就是说此时要在采样L时得到一个比-30dB小的值, L的角度为45度, 对于38k来说就是90度, 因此得出equ3(左边为20log). 求出θ, 也就是说在38k情况下需要14.5度. 14.5度是多长时间呢? equ4求出为1.05us. 也就是说要达到947.5k的采样率, 6.2:1的插值, 就可以实现30dB. 因此TI选择7:1.
+
+----
+
+###US6901146 All-Digital FM Stereo Demodulator and Demodulation Method 
+
+来自Mitsubishi的方案, 采用的方法与之前类似, 但他介绍说他是从一篇论文得到的灵感[A DSP-Based Stereo Decoder for Automotive Radio](http://papers.sae.org/900244/), 这篇我没找到, 就只能看三菱写的读后感了.
+
+![US6901146 prior art][19]
+
+可以看到是调整ADC的采样来获得L和R的, 他说在11位置, 产生的是VCO相位和输入pilot之间的差, 然后通过这个差来控制VCO来实现类似PLL的锁定相位的功能. 12,13构成的功能是根据输入的频率信号来分频除8, 后控制一个8个sample大小的LUT来产生mix用的信号. 两个频率一样, 相位不同的信号乘后产生一个固定的偏差? 参考[三角恒等式](https://zh.wikipedia.org/zh/%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%BC%8F)的积化和差等式, 
+结果为一个倍频信号+ or - 一个固定的直流信号. 本方案里, 这个直流信号用来控制VCO.
+
+而且13还控制着7和8的latch.
+
+![US6901146 embodiment 1][20]
+
+于是三菱进行了改进, 将原有的VCO部分用一个类似NCO的东东代替, 而ADC为固定采样率, 由MCLK(4.864M)来提供, 由于12这个table大小为8, 因此最佳的内部采样率为19k*8=152k(也就是8个采样一个周期,刚好为19k), 那么5和4应该为除32.
+
+15这个东东控制着5和16这两个counter, 16的M值由15来设定, 同时15控制5是增加N还是减少N. 16由5来控制计数, 而M由15决定, 在每个M count, 16会复位且让5根据15的命令来增加或减少.
+
+如当15设16为31, 然后M每31个count调整5从32至31. 那么就调整了参考频率的(M\*N-1)/(M\*N)(原文为(M-N-1)/(M-N)=991/992 ?)也就是增加了0.1%.
+
+好吧, 我理理, 采样频率为4.864M, 那么对于38k信号来说是每个周期有128个采样(分辨率2.8度), 当抽取32时, 则是每个周期4个采样, 如果刚好同频率的话, 那么就刚好可以采出L和R, 如果有调整, 如是31时, 则是4.129个采样, 换句话说, 此时的内部采样频率为156.9k与之前在32时的152k相差4.9k 也就是差不多3%的样子. 而三菱说是0.1% ? 为啥? 
+
+然后三菱又介绍了一堆类似的方案.
+
+----
+
+###US4630299 Digital Circuit for Decoding Digitized, Demodulated FM Stereo Signals
+
+通用首先采用一个IIR滤波器来得到19k, 描述IIR的部分完全没有看懂, 既然后边的直接乘的, 那么在相位上肯定也是有一些补偿.
+
+![US4630299 embodiment][21]
+
+然后与delay 90度后的信号相乘, 也是采用积化和差公式
+
+![US4630299 equ][22]
+
+当两个角度一致时, 则sin*cos可以产生倍频信号, 其实这和之前的平方倍频是完全一致的道理. 该专利还有中文版本 CN86100932.
+
+
+----
+
+###US20060251196 Recovering a Signal Without a Phase Locked Loop
+
+CN1826741A 是中文版, 看到配图我也是醉了. 飞利浦你想怎么样?
+
+![US4630299 1][23]
+
+首先他说US5404405 也就是Hughes Aircraft Company搞的那个方案的8那个BPF很复杂, 不容易实现. 29为BPF滤波器, 28为一个固定的振荡器, 22(可用cordic来实现)比较这两个信号的相位差后, 加这个相位差到信号21的相位上, 在加上一个用于补偿22的delay用的常数. 之后这个信号平方来倍频.
+
+我的理解是, 比如本来BPF出来的信号是有噪声的, 鉴频器(应是比较抗噪声干扰的, 如经过LP)就可以得到与纯净信号的相位差, 然后调整这个纯净信号的相位与原信号同步, 则用这个19k来解调L-R就要好的多. 嗯~就是这么个意思.
+
+![US4630299 2][24]
+
+飞利浦还有个这方案, 在前面的方案基础上加上30这个mixer, 那么30的输出就和之前三菱的方案有些类似, 但后边的处理是完全一样的吗? 如果有相位差, mixer之后不就是个直流了吗? 为什么还要鉴频呢? 飞利浦只解释说这样子29那个滤波器只需要设计一个LP就可以了, 不用BPF.
+
+----
+
+###US6714651B2 FM Stereo Signal Demoudulating Apparatus and Method
+
+历时半个月的痛苦的看资料终于要结束了, 这是最后一个. 来自先锋.
+
+![US6714651 prior art][25]
+
+这是号称之前的方案, 图4中, 30为倍19k -> 38k的东东, 其他的是老样子, 只是画法不同, 图5详细描述倍频方案. 这个图的理解需要结合下图.
+
+![US6714651 wave forms][27]
+
+输入为3A波形, 3B为delay了90度的波形, 那么这两个做XOR后就是3C, 3D是3C delay 90度后的结果, 3E为XOR的结果(此时应该为19k*4=76k), 3F为inv后delay 90度的结果, 3C与3F做XOR的结果为3G. 然后乘上一个系数, 再与3C相加, 就得到了31这个波形图. 频率为38k.(真tm神奇). 然后先锋说这东西有缺点, 在图4 31乘法器位置, 31的输出m与FM信号n相乘时, 这个乘法需要运算量大, 成本高.
+
+![US6714651 embodiment][26]
+
+先锋说在倍频器里, 去掉了点东东, 直接输出信号3C和3G. 那么这时, 就是乘1和0了, 而不是乘一个小数, 当乘1时不变, 乘0时反向, 然后要乘一个小数(这不还是要乘么?), 然后先锋解释说这个乘法可以近似为乘0.5, 也就是向低位移一位, 或者更接近一点儿 2^(-1)-2^(-4)-2^(-6)-2^(-7) (要不是mathjax访问慢我就不用打这么奇怪了).
+
+
+###总结
+
+看不动了, 先总结一下吧.
+
+1. PLL产生38k法.
+2. 正交变换产生38k法.
+3. moto/TI的固定相位采样法.
+4. 平方产生38k法.
+
+当然这不是全部的Stereo解调算法, 还有很多专利我都没看或没怎么看懂, 因此这只是冰山一脚.
 
 
 
@@ -175,3 +305,16 @@ US5239585文中开头提到US4723288这个专利, 这个是Motorola(现在是Fre
 [12]: {filename}../images/FM立体声解调方法研究/12.png
 [13]: {filename}../images/FM立体声解调方法研究/13.png
 [14]: {filename}../images/FM立体声解调方法研究/14.png
+[15]: {filename}../images/FM立体声解调方法研究/15.png
+[16]: {filename}../images/FM立体声解调方法研究/16.png
+[17]: {filename}../images/FM立体声解调方法研究/17.png
+[18]: {filename}../images/FM立体声解调方法研究/18.png
+[19]: {filename}../images/FM立体声解调方法研究/19.png
+[20]: {filename}../images/FM立体声解调方法研究/20.png
+[21]: {filename}../images/FM立体声解调方法研究/21.png
+[22]: {filename}../images/FM立体声解调方法研究/22.png
+[23]: {filename}../images/FM立体声解调方法研究/23.png
+[24]: {filename}../images/FM立体声解调方法研究/24.png
+[25]: {filename}../images/FM立体声解调方法研究/25.png
+[26]: {filename}../images/FM立体声解调方法研究/26.png
+[27]: {filename}../images/FM立体声解调方法研究/27.png
