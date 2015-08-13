@@ -38,7 +38,7 @@ SOCIAL = (
 )
 #          ('Another social link', '#'),)
 
-DEFAULT_PAGINATION = 3
+DEFAULT_PAGINATION = 6
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
@@ -115,7 +115,7 @@ PYGMENTS_STYLE = 'fruity'
 #DISPLAY_CATEGORIES_ON_SIDEBAR = True
 #DISPLAY_CATEGORIES_ON_MENU = False
 
-TAG_CLOUD_MAX_ITEMS = 5
+TAG_CLOUD_MAX_ITEMS = 10
 #DISPLAY_TAG_CLOUD_ON_SIDEBAR = False
 
 DISPLAY_RECENT_POSTS_ON_SIDEBAR = True

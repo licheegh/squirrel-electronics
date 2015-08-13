@@ -2,6 +2,7 @@
 Date: 2015-06-27 20:00
 Category: DSP
 Tags: fm解调
+Summary: 对3种不同的FM的数字解调方法进行了比较和研究.
 
 
 其实在之前的[在python下通过RTLSDR收听FM广播]({filename}../Python/在python下通过RTLSDR收听FM广播.md)文章中, 已经找到了3种不同的FM解调方法, 只是着急得到结果, 所以没有详细研究, 现在已经搞定收音, 因此仔细研究一下解调方法的区别.

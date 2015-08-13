@@ -2,6 +2,7 @@ Title: 在python下通过RTLSDR收听FM广播
 Date: 2015-04-14 12:13
 Category: Python
 Tags: rtlsdr,fm解调
+Summary: 系列文章之第四, 本文是最终篇, 汇集之前所学, 写一个在python下的FM收音机.
 
 
 1. [随机信号]({filename}用Matplotlib显示实时信号.md)
