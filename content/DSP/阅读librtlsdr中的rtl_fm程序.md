@@ -1,11 +1,17 @@
 Title: 阅读librtlsdr中的rtl_fm程序
 Date: 2015-04-08 12:15
 Category: DSP
-Tags: librtlsdr,fm解调,rtl-sdr
+Tags: fm解调,rtlsdr
+
+[TOC]
+
+###引子
 
 FM应该怎么样解调? 看了一部分DSP书的我感到很晕, 这和书里面说的xx滤波器有毛关系? 因此我决定找个例子来研究下.我仅有的可研究对象就是RTL-SDR, 于是我在[这里](http://sdr.osmocom.org/trac/wiki/rtl-sdr)找到了[librtlsdr的源码](https://github.com/steve-m/librtlsdr), 里面有个rtl_fm例子.嗯, 就从它开始学吧, 1200多行~还好.
 
 ---
+
+###main
 
 这个东东编译后是个exe, 所以咱先从*main*开始看:
 ```c
@@ -52,9 +58,11 @@ int main(int argc, char **argv)
 
 这几个thread目测是真正干活的程序. 分工明确. 那么咱就一个一个找来研究.
 
-###Controller
+---
 
-函数名为**controller_thread_fn(void *arg)* 程序在设置了几个参数后进入一个while. 
+###Controller线程
+
+函数名为\*\*controller_thread_fn(void \*arg)\* 程序在设置了几个参数后进入一个while. 
 ```c
 ... line 891
 	/* set up primary channel */
@@ -117,7 +125,9 @@ int verbose_offset_tuning(rtlsdr_dev_t *dev)
 ```
 这程序可以同时扫描多个频率, 如某个频率有信号且大于squelch, 则会播放出来. OK, 那也就是说Controller只是来实现这个功能的, 解调和他没关系. 那就继续研究下一个Thread.
 
-###Output
+---
+
+###Output线程
 
 ```c
 ... line 839
@@ -137,7 +147,9 @@ static void *output_thread_fn(void *arg)
 
 函数很短, 只是在等一个event ready后, 将结果输出. 一堆线程同步用的lock.
 
-###Dongle
+---
+
+###Dongle线程
 
 ```c
 ... line 806
@@ -173,9 +185,12 @@ RTLSDR_API int rtlsdr_read_async(rtlsdr_dev_t *dev,
 ```
 通过一个*callback(rtlsdr_callback)*来返回采样到的值.
 
-###Demod
+---
+
+###Demod线程
 
 其他的都看完了, 那么解调就是在这个线程里了.
+
 ```c
 static void *demod_thread_fn(void *arg)
 {
@@ -203,11 +218,15 @@ static void *demod_thread_fn(void *arg)
 	return 0;
 }
 ```
+
 *full_demod()* 嗯, 就是你了, 在看它之前, 先确认一下其他都干些什么, 后边似乎在做squelch相关的, 然后是memcpy. 最后是ready event. OK, 没问题.
 
 *full_demod*位于line 730. 略长啊, 有点儿头疼. 但仔细看一下, 貌似是分部分的.
 
+---
+
 ####full_demod的Part 1
+
 ```c
 void full_demod(struct demod_state *d)
 {
@@ -231,6 +250,7 @@ void full_demod(struct demod_state *d)
 		low_pass(d);
 	}
 ```
+
 首先分析一下这部分是在做什么, 函数根据ds_p的true or false来执行两种不同的滤波. 那么这个*downsample_passes*是啥? 
 
 ```c
@@ -249,7 +269,9 @@ void full_demod(struct demod_state *d)
 		"\t    size can be 0 or 9.  0 has bad roll off\n"
 ...
 ```
+
 确实是一个特殊的滤波器. 先不管他. 那么这部分就只是执行*low_pass(d)*
+
 ```c
 ...line 302
 void low_pass(struct demod_state *d)
@@ -274,6 +296,7 @@ void low_pass(struct demod_state *d)
 	d->lp_len = i2;
 }
 ```
+
 按注释这是一个没有加窗(矩形窗)的FIR滤波器. 怪不得加上-F的说明中描述是**低泄漏**的滤波器.  仔细研究后发现, 这个函数实际做的是按照*downsample*的要求降低了采样率, 降低的方式是把几个sample加起来合为一个. 可以看到最后将长度也进行了修改.  
 我google了一早上, 大部分的抽取算法都是这样的顺序
 
@@ -297,8 +320,12 @@ filter.
 
 OK吧~有人说这个可以用, 且和我理解的差不多就行, 等以后再仔细想.
 
+---
+
 ####full_demod的Part 2
+
 接下来是squelch, 不管他.
+
 ```c
 ... line 751
 	/* power squelch */
@@ -317,11 +344,17 @@ OK吧~有人说这个可以用, 且和我理解的差不多就行, 等以后再�
 		"\t[-l squelch_level (default: 0/off)]\n"
 ```
 接下来是
+
+---
+
 ####full_demod的Part 3
+
 ```c
 	d->mode_demod(d);  /* lowpassed -> result */
 ```
+
 貌似是个函数指针, 就是可以在线换被调函数的那种~看看默认的是啥
+
 ```c
 ... line 190
 		"\t[-M modulation (default: fm)]\n"
@@ -333,7 +366,9 @@ OK吧~有人说这个可以用, 且和我理解的差不多就行, 等以后再�
 			if (strcmp("fm",  optarg) == 0) {
 				demod.mode_demod = &fm_demod;}
 ```
+
 嗯~默认的调用*fm_demod*这个函数. 
+
 ```c
 ... line 517
 void fm_demod(struct demod_state *fm)
@@ -365,8 +400,10 @@ void fm_demod(struct demod_state *fm)
 	fm->result_len = fm->lp_len/2;
 }
 ```
+
 看起来就是对所有的值进行一次**discriminant**, 其中那些`pre_`的意思是下次进这个函数时, 能让数据接着上次的值来判断相位, 做到连贯的处理, 然后还可以选discriminant的方式, 有三种, 使用说明中的说明是这样的.   
 另外, 可以看出输入数据的格式是 虚部1.实部1.虚部2.实部2....
+
 ```c
 "\t[-A std/fast/lut choose atan math (default: std)]\n"
 
@@ -381,6 +418,7 @@ int polar_discriminant(int ar, int aj, int br, int bj)
 	return (int)(angle / 3.14159 * (1<<14));
 }
 ```
+
 这个方法和[Richard Lyons描述的方法](http://www.embedded.com/design/configurable-systems/4212086/DSP-Tricks--Frequency-demodulation-algorithms-)一致, 首先, 是multiply函数.
 
 ```c
@@ -390,6 +428,7 @@ void multiply(int ar, int aj, int br, int bj, int *cr, int *cj)
 	*cj = aj*br + ar*bj;
 }
 ```
+
 这个~~是复数的乘法. 注意到在调用这个函数时, 第二个复数的虚部加了符号(第一次见这么用的), 在研究了一下复数后, 这个用指数形式来理解比较容易. 以下图来自[wikipdia](http://en.wikipedia.org/wiki/Complex_number#Multiplication_and_division)
 
 一个复数的模就是
@@ -405,11 +444,14 @@ void multiply(int ar, int aj, int br, int bj, int *cr, int *cj)
 ![复数图](../images/阅读librtlsdr中的rtl_fm程序/3.png)
 
 如果y,也就是虚部变为负的, 则相角应当于变换符号.
+
 ```c
 	multiply(ar, aj, br, -bj, &cr, &cj);
 	angle = atan2((double)cj, (double)cr);
 ```
+
 **也就是说, 上面这段程序实现的就是相角相减. 然后用atan2求出这个相角差是多大.**
+
 ```c
 	return (int)(angle / 3.14159 * (1<<14));
 ```
@@ -417,7 +459,10 @@ atan2返回的范围是-pi至pi, 则除pi后是一个从-1至1的值, 这个值�
 
 这里fm_demod就结束了,我们回到full_demod.
 
+---
+
 ####full_demod的Part 4
+
 ```c
 	if (d->mode_demod == &raw_demod) {
 		return;
@@ -435,7 +480,9 @@ atan2返回的范围是-pi至pi, 则除pi后是一个从-1至1的值, 这个值�
 		//arbitrary_resample(d->result, d->result, d->result_len, d->result_len * d->rate_out2 / d->rate_out);
 	}
 ```
+
 后边有几个额外可选的处理选项.
+
 ```c
 ...line 1081
 		case 'o':
@@ -449,9 +496,12 @@ atan2返回的范围是-pi至pi, 则除pi后是一个从-1至1的值, 这个值�
 		"\t    dc:     enable dc blocking filter\n"
 		"\t    deemp:  enable de-emphasis filter\n"
 ```
+
 默认都是关的, 不用考虑.
 
 ---
+
+###总结
 
 到这里就看完了默认的处理部分. 还是很简单的嘛~
 总结一下,FM解调的过程就是(正交信号输入)

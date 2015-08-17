@@ -1,7 +1,7 @@
 Title: 在Python下实时显示麦克风波形与频谱
 Date: 2015-04-09 18:50
 Category: Python
-Tags: Matplotlib,animation,频谱
+Tags: Matplotlib,pyaudio,python
 Summary: 系列文章之第二, 本文中用之前学到的方法实时显示从pyaudio读取到的麦克风数据.
 
 

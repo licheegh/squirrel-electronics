@@ -2,7 +2,7 @@
 Date: 2015-07-27 13:00
 Modified: 2015-08-13 12:00
 Category: DSP
-Tags: fm解调,fm立体声解调,fm stereo demod
+Tags: fm解调
 Summary: 介绍了一下啥是FM立体声, 研究了一些FM立体声解码的专利和文章.
 
 [TOC]

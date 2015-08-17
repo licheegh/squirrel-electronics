@@ -1,7 +1,7 @@
 Title: 在Python下用BSL给MSP430下载Firmware
 Date: 2013-09-12 13:05
 Category: Electronics
-Tags: python,bsl,msp430g2955,msp430
+Tags: python,msp430
 
 
 Python作为一个无所不能的工具, 当然可以给MSP430下载Firmware.根据官方的wiki页面[BSL_(MSP430)](http://processors.wiki.ti.com/index.php/BSL_(MSP430))

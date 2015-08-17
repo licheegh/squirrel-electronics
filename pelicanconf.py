@@ -23,8 +23,6 @@ AUTHOR_FEED_RSS = None
 # Blogroll
 LINKS = (
         ("cold's world",'http://www.linuxzen.com/'),
-#         ('Python.org', 'http://python.org/'),
-#         ('Jinja2', 'http://jinja.pocoo.org/'),
 #         ('You can modify those links in your config file', '#'),)
 )
 
@@ -34,9 +32,9 @@ SOCIAL = (
         ('Weibo','http://weibo.com/u/1448434815'),
         ('Linkedin','https://www.linkedin.com/in/squirrelelectronics'),
         ('github','https://github.com/licheegh'),
-        ('google+','https://plus.google.com/u/0/110725897032322313948')
+        ('google+','https://plus.google.com/u/0/110725897032322313948'),
+        ('虾米','http://www.xiami.com/u/5395152')
 )
-#          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 6
 
@@ -51,13 +49,6 @@ EXTRA_PATH_METADATA = {
 #FAVICON = 'extra/favicon.ico'
 
 # Theme Settings
-#	* `MENUITEMS`
-#	* `LINKS` (Blogroll will be put in the sidebar instead of the head)
-#* Analytics & Comments
-#	* `GOOGLE_ANALYTICS` (classic tracking code)
-#	* `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` (Universal tracking code)
-#	* `DISQUS_SITENAME`
-#	* `PIWIK_URL`, `PIWIK_SSL_URL` and `PIWIK_SITE_ID`
 SHOW_ARTICLE_AUTHOR = False
 #CUSTOM_CSS = 'static/custom.css'
 #BOOTSTRAP_FLUID = False
@@ -82,34 +73,34 @@ BOOTSTRAP_THEME = 'cosmo'
 #superhero
 #united red
 #yeti
-PYGMENTS_STYLE = 'fruity'
-#- autumn
-#- borland
-#- bw
-#- colorful
+PYGMENTS_STYLE = 'monokai'
+#- autumn w
+#- borland w
+#- bw x
+#- colorful w
 #- default white +
-#- emacs
-#- friendly
-#- fruity
-#- github
-#- igor
-#- manni
-#- monokai
-#- murphy
-#- native
-#- paraiso-dark
-#- paraiso-light
-#- pastie
-#- perldoc
-#- rrt
-#- solarizeddark
-#- solarizedlight
-#- tango
-#- trac
-#- vim
-#- vs
-#- xcode
-#- zenburn
+#- emacs g
+#- friendly g x
+#- fruity d
+#- github g
+#- igor w +
+#- manni g
+#- monokai dg
+#- murphy w
+#- native d
+#- paraiso-dark p
+#- paraiso-light g
+#- pastie w
+#- perldoc g
+#- rrt x
+#- solarizeddark g
+#- solarizedlight x
+#- tango g x
+#- trac w
+#- vim d too
+#- vs w +
+#- xcode w +
+#- zenburn dg
 #SITELOGO = 'images/logo_small.JPG'
 
 #DISPLAY_CATEGORIES_ON_SIDEBAR = True
@@ -139,13 +130,6 @@ BOOTSTRAPIFY = {
     'table': ['table','table-bordered','table-hover','table-striped','table-responsive'],
     'img': ['img-responsive']
 }
-#TOC = {
-    #'TOC_HEADERS' : '^h[1-6]',  # What headers should be included in the generated toc
-                                ## Expected format is a regular expression
-
-    #'TOC_RUN'     : 'true'      # Default value for toc generation, if it does not evaluate
-                                ## to 'true' no toc will be generated
-#}
 #DIRECT_TEMPLATES = (('search',))
 #MD_EXTENSIONS = ['toc','codehilite(css_class=highlight,linenums=True)','extra']
 MD_EXTENSIONS = ['toc','codehilite(css_class=highlight)','extra']

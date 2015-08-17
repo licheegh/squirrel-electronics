@@ -1,7 +1,6 @@
 Title: 关于精度(precision),准确度(accuracy)
 Date: 2013-10-20 10:34
 Category: Electronics
-Tags: 精度,准确度
 
 [StackExchange原文](http://electronics.stackexchange.com/questions/44758/ultra-low-noise-reference-and-supply-voltage-with-multiple-ldos-in-parallel)
 

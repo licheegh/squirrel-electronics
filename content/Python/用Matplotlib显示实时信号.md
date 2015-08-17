@@ -1,7 +1,7 @@
 Title: 用Matplotlib显示实时信号
 Date: 2015-04-05 16:01
 Category: Python
-Tags: Matplotlib,animation,python
+Tags: Matplotlib,python
 Summary: 系列文章之第一, 怎样在python环境中最简单的实现实时信号或数据绘图. 虽然这对于后面的学习并不是必须, 但可以很大程度上的帮助开发.
 
 ##由来

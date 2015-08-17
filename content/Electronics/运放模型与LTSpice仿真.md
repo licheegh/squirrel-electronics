@@ -1,7 +1,7 @@
 Title: 运放模型与LTSpice仿真
 Date: 2015-02-16 15:14
 Category: Electronics
-Tags: ltspice运,算放大器模型,传递函数
+Tags: ltspice,运算放大器,传递函数
 
 
 运放可以被建模为一个具有低频极点和很高开环增益的压控电压源. 另外在GBP频率以上会有高频极点(不止一个).

@@ -1,7 +1,7 @@
 Title: 在python下实时显示rtlsdr波形与频谱
 Date: 2015-04-10 17:18
 Category: Python
-Tags: Matplotlib,animation,频谱,rtlsdr
+Tags: Matplotlib,rtlsdr,python
 Summary: 系列文章之第三, 本文中用之前学到的方法实时显示从rtl-sdr读取到的数据. 也就是简单的把信号源从麦克风换为rtl-sdr.
 
 
