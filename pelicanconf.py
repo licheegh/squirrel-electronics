@@ -29,10 +29,11 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-        ('Weibo','http://weibo.com/u/1448434815'),
+        #('Weibo','http://weibo.com/u/1448434815'),
+        ('Weibo','http://weibo.com/squirrelelectronics'),
         ('Linkedin','https://www.linkedin.com/in/squirrelelectronics'),
         ('github','https://github.com/licheegh'),
-        ('google+','https://plus.google.com/u/0/110725897032322313948'),
+        #('google+','https://plus.google.com/u/0/110725897032322313948'),
         ('虾米','http://www.xiami.com/u/5395152')
 )
 
