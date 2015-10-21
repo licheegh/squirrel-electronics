@@ -1,5 +1,6 @@
 Title: 选择用于低成本软件无线电的FPGA
 Date: 2015-08-18 17:00
+Modified: 2015-09-13 17:000
 Category: Electronics
 Tags: FPGA, 软件无线电
 Summary: 对于一个简单的软件无线电项目, 对FPGA都有哪些需求? xilinx公司的低成本FPGA: Spartan-3, Spartan-6, Artix-7, 应该如何选择?
@@ -13,7 +14,7 @@ Summary: 对于一个简单的软件无线电项目, 对FPGA都有哪些需求? 
 前几天看FM立体声解调算法实在是看得头疼, 于是决定看点儿别的散散心. 那么我就先研究一下后边的硬件项目吧, 项目的目标是一个软件无线电的开发板, FPGA将高速ADC中的数据处理通过高速数据接口输出至PC. 那么选择FPGA就有以下地方需要考虑:
 
 1. 可板载高速ADC(>50Msps)
-2. 可与PC通过千兆网, USB3.0等连接.
+2. 可与PC通过某种高速连接传输数据.
 3. 板上具有尽可能丰富的DSP资源.
 4. 低成本.
 5. 设计起来容易.
@@ -33,8 +34,8 @@ Ettus USRP2     | XC3SXX00      | LTC2284       | DP83865       | 50M 8bit | 双
 [Ettus B100][L4]| XC3S1400      | AD9862        | Cy7c68013 FX2 | 16M 8bit  | 集成芯片
 Ettus B2x0      | XC6SLX75/150  | AD9361        | CYUSB3014 FX3 | 61.44M | 强悍的集成AD9361
 Ettus N2x0      | XC3SD3400/1800| ADS62P44      | ET1011C2      | 50M 8bit | PHY芯片很奇怪
-HackRF One      | LPC4320       | MAX5864+MAX2837 | Integrated /w LPC4320 | 20M 8bit | 复杂的RF设计
-[HPSDR][L5]     | EP3C40        | LTC2208       | KSZ9021RL & CY7C68013A | | 带背板的模块化设计
+HackRF One      | LPC4320       | MAX5864+MAX2837 | Integrated /w LPC4320 | 20M 8bit | 复杂的RF设计[^7]
+[HPSDR][L5]&Hermes| EP3C40        | LTC2208       | KSZ9021RL & CY7C68013A | | 强悍的设计[^6]
 [Myriad-RF][L6] | iMX6+XC6SLX45 | LMS6002       | 通过主板连接  |       | 基于[novena][L7]这个开发板
 OsmoSDR         | ATSAM3U+LFXP2 | e4000+AD7357  | Integrated /w SAM3 | 1.2M | 很有趣的设计
 UmTRX           | XC6SLX75      | LMS6002D      | ET1011C2      | 14M   | 使用Ettus的UHD, 因此PHY一样
@@ -54,7 +55,7 @@ UmTRX           | XC6SLX75      | LMS6002D      | ET1011C2      | 14M   | 使用
 
 可以看出大多数项目都是使用USB来作为接口, 而用网络的大多数都是使用Ettus公司开源的UHD接口, 那么大多数人的选择还是认为网络或多或少有些问题.
 
-使用的FPGA一律都是越大越好, 尤其是Ettus公司.
+使用的FPGA方案一律都是选大容量的, 尤其是Ettus公司.
 
 ---
 
@@ -81,11 +82,15 @@ OK, 总结一下:
 1. Ethernet方案:
     * MCU集成MAC+PHY : 只能到100M, 只发不收难度应不高, 都有例程.
     * FPGA + Gigabit PHY : 只能做到点对点传输. 这可以说是利用这个接口实现了想要的功能. 网口当USB用了.
-2. USB方案: Cypress FX3搞定. 经查libusb还有个fxload可以支持给FX3下载FW.
+2. USB方案: Cypress FX搞定, 3.0和2.0 HS都有支持. 经查libusb还有个fxload可以支持给FX下载FW.
 
 顺便提一下FX3, 它采用一个200MHz的ARM926EJ-S, 可见其中肯定有限制必须要这个级别的MCU才可以搞定. 因此Gigabit Ethernet只出现在高端处理器上也就不奇怪了.
 
-**这样一来, 我还是选FX3吧.**
+刚写这篇的时候我考虑的是尽量高的传输数据, 所以想选择FX3, 但外出散步思考了一下后, 我觉得带宽这件事情需要仔细的考虑. 高带宽有什么样的好处呢? 首先"视野"开阔了, 能同时看到更多的信号传输, 其次某些应用本身的信号带宽就很宽, 如wifi, 那么想要收到这样的信号, 宽带的接收是必须的. 但高带宽也带来一些问题, 第一提高了整个设计的成本, 需要高速的ADC, 高速的数据连接, 高速的处理系统.
+
+其实我用这个东东也就是玩玩, 那些高带宽的应用我肯定是不需要的, 而我感兴趣的应用大多数应都不会大于1M的带宽. 另外我想与其将带宽做到最大, 不如将可接收的范围扩大, 比如很火爆的hackRF one, 它可以工作的带宽达到30M-6G, 虽然只有20M的带宽, 但依然挡不住它的火爆.
+
+**因此我决定采用古老的USB2.0 HS.**
     
 ---
 
@@ -125,7 +130,17 @@ Spartan-6 为45nm工艺, 集成了内存控制器, 支持DDR3, CLB得到了加�
 
 Artix-7 为28nm工艺, 集成了一个1Msps的12bit ADC, DSP模块升级为DSP48E1(功能强悍很多). 去掉了内存控制器(参考Xilinx MIG的说明书, 普通DDR2需要7633个LUT和4588个FF, 这分别是XC7A15T的73%和22%), 全系列都有PCI-E, GTP. CLB部分去掉了6中最小的SLICEX, 所有的SLICE都具有carry输入与输出. 另外CLB采用了[ASMBL架构](http://www.xilinx.com/company/press/kits/asmbl/asmbl_arch_pres.pdf)的排列方式. [wp405](http://www.xilinx.com/support/documentation/white_papers/wp405-7Series-Logical-Advantage.pdf)中有7系列CLB与6系列的对比.
 
-另外一篇非常好的比较Spartan-6之前各个版本xilinx FPGA的PPT[Basic FPGA Architectures](http://www.csd.uoc.gr/~hy220/2009f/lectures/11_basic_fpga_arch.pdf).
+另外一篇非常好的比较Spartan-6之前各个版本xilinx FPGA的PPT: [Basic FPGA Architectures](http://www.csd.uoc.gr/~hy220/2009f/lectures/11_basic_fpga_arch.pdf).
+
+3,6,7之间的结构在PlanAhead软件中的对比:
+
+![Spartan 3A, Spartan 6, Kintex 7 compare 1][3]
+
+6和7之间的差别其实不大, 但3与6之间确实有很大的差别. 逻辑单元细节对比. (更正: 图中XC6SLX25左上黑色部分不是内存控制器, 内存控制器为上半部两边的粉色框, 黑色部分为不明物体.)
+
+![Spartan 3A, Spartan 6, Kintex 7 compare detail][4]
+
+这样就能很直观的看到6中SLICE的排列方式.
 
 当然我这是相当业余且简单的比较:), xilinx并没有官方的比较这些产品的区别. 接下来我从一个具体的型号来比较一下, 这里的基准是XC3S500E, 因为我偶像用的是它.
 
@@ -149,11 +164,11 @@ DSP     | 20        | 20        | 32        | 45
 
 OK, 那也就是说, 老一代的3系列产品在价格上并没有优势, 而性能还不如新产品, 那么我面临的选择就是Artix和Spartan-6. 新的Artix虽然在CLB上并没有太大的改进, 但是在CLB的排列方式上有很大改进, 而且新的DSP模块支持ALU也挺吸引人, 但其新增的PCI-E和GTP我完全用不上. 另外电源多了一组. 复杂度增加.
 
-据我之前在马云家询的价, Vivado Webpack版本支持的最低档Artix-7(XC7A35T)要价300+, 还没有现货, 从digikey买也差不多是这价, 而Spartan-6便宜很多, 马云家FTG256的LX25竟然只要不到100. 在开发软件方面Artix也不是很友好, 强制使用35T外, 还必须是win7 64bit. 
-
-另外为了练习BGA, 所以选择最小pin count, 最大pin pitch的FTG256封装. 可以焊上去LX9~LX25三个型号.
+据我之前在马云家询的价, Vivado Webpack版本支持的最低档Artix-7(XC7A35T)要价300+, 还没有现货, 从digikey买也差不多是这价, 而Spartan-6便宜很多, 马云家FTG256的LX25竟然只要不到100. 在开发软件方面Artix也不是很友好, 不能使用15T外, 还必须是win7 64bit. 
 
 **因此我很倾向于用Spartan-6.**
+
+为了练习BGA, 所以选择最小pin count, 最大pin pitch的FTG256封装. 可以焊上去LX9, LX16, LX25三个型号.
 
 ###总结
 
@@ -161,11 +176,18 @@ OK, 那也就是说, 老一代的3系列产品在价格上并没有优势, 而�
 
 后边会继续研究项目细节.
 
+1. RF部分.
+2. ADC部分.
+3. 其他外围器件.
+
 [1]: {filename}../images/选择用于低成本软件无线电的FPGA/1.jpg
 [2]: {filename}../images/选择用于低成本软件无线电的FPGA/2.jpg
+[3]: {filename}../images/选择用于低成本软件无线电的FPGA/3.png
+[4]: {filename}../images/选择用于低成本软件无线电的FPGA/4.png
 
 [^1]: 这一行数据主要来自各自器件的DC and AC switching characteristic中的Recommended Operating Conditions.
 [^2]: 根据ug482, Chap 5, Pin Description and Design Guidelines, GTP的电源如不用可以接地. 根据ug480, Chap 1, Table 1-1, XADC如不用可以将电源与Vccaux接在一起. 那么IO + aux + int&bram就是三组电源, 当然如果IO用1.8v, 就可以减少到2组.
 [^3]: 这是最小的Artix-7.
 [^4]: 这个在xilinx这里被称为Equivalent Logic Cell. 据说是等效ASIC业内行话.
 [^5]: 作者之前用LTC2208, 但后来改为LTC2216.
+[^6]: 该项目全部开源(所有PCB, HDL, PC软件), 虽然不是最紧凑的方案, 但是非常灵活, 研究一下好处多多:) 并且衍生出很多其他项目,如Hermes.
