@@ -1,5 +1,6 @@
 Title: 在Python下实时显示麦克风波形与频谱
 Date: 2015-04-09 18:50
+Modified: 2015-11-12 12:00
 Category: Python
 Tags: Matplotlib,pyaudio,python
 Summary: 系列文章之第二, 本文中用之前学到的方法实时显示从pyaudio读取到的麦克风数据.
@@ -14,7 +15,7 @@ Summary: 系列文章之第二, 本文中用之前学到的方法实时显示从
 
 运行截图
 
-![程序运行截图]({filename}../images/在python下实时显示麦克风波形与频谱/1.jpg)
+![程序运行截图]({filename}../images/在python下实时显示麦克风波形与频谱/1.gif)
 
 在上一篇中已经实现了实时显示随机的信号, 那么要实现麦克风的音频信号显示, 待实现的就是:
 
@@ -70,7 +71,7 @@ def read_audio_thead(q,stream,frames,ad_rdy_ev):
 
 ###显示部分
 
-我在显示随机数的那个框架上, 改成了显示两个axes, 一个是实时波形, 另一个是fft. 且fft这个图的y轴指数的.  
+我在显示随机数的那个框架([用Matplotlib显示实时信号]({filename}用Matplotlib显示实时信号.md))上, 改成了显示两个axes, 一个是实时波形, 另一个是fft. 且fft这个图的y轴指数的.  
 另外我用tkinter做了一个只有一个按钮(quit)的小界面, 这样可以控制程序在想退出的时候关闭.
 
 ---

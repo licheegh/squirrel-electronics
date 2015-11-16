@@ -1,5 +1,6 @@
 Title: 用Matplotlib显示实时信号
 Date: 2015-04-05 16:01
+Modified: 2015-11-12 12:00
 Category: Python
 Tags: Matplotlib,python
 Summary: 系列文章之第一, 怎样在python环境中最简单的实现实时信号或数据绘图. 虽然这对于后面的学习并不是必须, 但可以很大程度上的帮助开发.
@@ -88,14 +89,18 @@ def update(i):
     linem.set_ydata(np.random.rand(10))
     return linem,
 
+fig.show()
+
 ani = animation.FuncAnimation(fig, update,
                               init_func=init, 
                               frames=1,
                               interval=1,
                               blit=True)
+
+raw_input("wait")
 ```
 
-![程序运行截图](../images/用Matplotlib显示实时信号/3.jpg)
+![程序运行截图](../images/用Matplotlib显示实时信号/3.gif)
 
 
 嗯~看起来简单, 调了两天哦~ init函数是必须的, 在blit使能时, 如没有init函数, animation会将update的第一帧作为初始话, 你就会看到一个不消失的曲线. 而那个奇怪的`return linem,`意思是[返回一个unpack的tuple,参考stackoverflow](http://stackoverflow.com/questions/16037494/python-code-is-it-comma-operator) 而为什么要返回这个奇怪的东西, 我也是大概理解,[ animation的API文档](http://matplotlib.org/1.4.3/api/animation_api.html#matplotlib.animation.FuncAnimation).

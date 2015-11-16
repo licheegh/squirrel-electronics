@@ -11,7 +11,7 @@ PATH = 'content'
 TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh'
-LOCALE = ['chs','zh_CN']
+LOCALE = ['zh_CN.UTF-8','en_HK.UTF-8']
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

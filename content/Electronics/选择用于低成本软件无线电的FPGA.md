@@ -1,6 +1,6 @@
 Title: 选择用于低成本软件无线电的FPGA
 Date: 2015-08-18 17:00
-Modified: 2015-09-13 17:000
+Modified: 2015-09-13 17:00
 Category: Electronics
 Tags: FPGA, 软件无线电
 Summary: 对于一个简单的软件无线电项目, 对FPGA都有哪些需求? xilinx公司的低成本FPGA: Spartan-3, Spartan-6, Artix-7, 应该如何选择?
@@ -34,7 +34,7 @@ Ettus USRP2     | XC3SXX00      | LTC2284       | DP83865       | 50M 8bit | 双
 [Ettus B100][L4]| XC3S1400      | AD9862        | Cy7c68013 FX2 | 16M 8bit  | 集成芯片
 Ettus B2x0      | XC6SLX75/150  | AD9361        | CYUSB3014 FX3 | 61.44M | 强悍的集成AD9361
 Ettus N2x0      | XC3SD3400/1800| ADS62P44      | ET1011C2      | 50M 8bit | PHY芯片很奇怪
-HackRF One      | LPC4320       | MAX5864+MAX2837 | Integrated /w LPC4320 | 20M 8bit | 复杂的RF设计[^7]
+HackRF One      | LPC4320       | MAX5864+MAX2837 | Integrated /w LPC4320 | 20M 8bit | 复杂的RF设计
 [HPSDR][L5]&Hermes| EP3C40        | LTC2208       | KSZ9021RL & CY7C68013A | | 强悍的设计[^6]
 [Myriad-RF][L6] | iMX6+XC6SLX45 | LMS6002       | 通过主板连接  |       | 基于[novena][L7]这个开发板
 OsmoSDR         | ATSAM3U+LFXP2 | e4000+AD7357  | Integrated /w SAM3 | 1.2M | 很有趣的设计
