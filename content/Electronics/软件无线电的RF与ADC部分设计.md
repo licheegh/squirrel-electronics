@@ -3,7 +3,6 @@ Date: 2015-08-24 12:00
 Category: Electronics
 Tags: 软件无线电
 Summary: 要设计一个低成本的软件无线电
-Status: Draft
 
 [TOC]
 
