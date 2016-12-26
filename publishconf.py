@@ -24,7 +24,7 @@ DISQUS_SITENAME = "squirrel-electronics"
 #GOOGLE_ANALYTICS_UNIVERSAL = "UA-65976997-1"
 
 
-#PLUGIN_PATHS = ['pelican-plugins']
+#PLUGIN_PATHS = ['my_plugins']
 PLUGINS = PLUGINS + ['sitemap','gzip_cache']
 
 #sitemap config

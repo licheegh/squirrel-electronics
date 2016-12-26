@@ -117,7 +117,7 @@ CC_LICENSE = "CC-BY-NC-SA"
 
 BANNER = 'images/logo.jpg'
 
-PLUGIN_PATHS = ['pelican-plugins']
+PLUGIN_PATHS = ['my_plugins']
 PLUGINS = [ 
             #'render_math',
             #'better_codeblock_line_numbering'
