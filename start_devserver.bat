@@ -1,2 +1,2 @@
 cd output
-python -m http.server
+python -m SimpleHTTPServer 80

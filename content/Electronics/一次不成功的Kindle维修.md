@@ -6,7 +6,7 @@ Summary: 老友的Kindle Paperwhite砖了, 据说可以连tty(UART)接口来重�
 
 老友的Kindle Paperwhite某一天突然只能看大树了, 在反复插拔USB接口到充电器与PC上, 以及各种姿势按电源按钮无效的情况下, 打算拆开重新刷.
 
-KPW的主板是有预留出linux下调试用的tty接口的, 所谓的tty也就是1.8V的串口/UART, 这一点我特意用示波器看了一下, 确实是1.8V. 我之前搞的一个板子上有CP2102这个USB转串口的芯片, 但它是3.3V供电且输入的高电平最低为2.0V, 那么问题来了, 又要上淘宝买个兼容1.8V的USB转换器吗? 
+KPW的主板是有预留出linux下调试用的tty接口的, 所谓的tty也就是1.8V的串口/UART, 这一点我特意用示波器看了一下, 确实是1.8V. 我之前搞的一个板子上有CP2102这个USB转串口的芯片, 但它是3.3V供电且输入的高电平最低为2.0V, 那么问题来了, 又要上淘宝买个兼容1.8V的USB转换器吗?
 
 或者说可以接个三极管转换一下? 反正是单向传输. 于是搜了一下, [Is a N-Channel Mosfet save/reliable for level shifting UART from 3V3 to 5V?](http://electronics.stackexchange.com/questions/102603/is-a-n-channel-mosfet-save-reliable-for-level-shifting-uart-from-3v3-to-5v), 中alexan_e提出了一个好方法.
 
@@ -55,11 +55,11 @@ KPW的主板是有预留出linux下调试用的tty接口的, 所谓的tty也就�
 最后上一张KPW3的PCB图, 来自ZOL.
 
 
-[1]: {filename}../images/一次不成功的Kindle维修/1.png
-[2]: {filename}../images/一次不成功的Kindle维修/2.jpg
-[3]: {filename}../images/一次不成功的Kindle维修/3.jpg
-[4]: {filename}../images/一次不成功的Kindle维修/4.jpg
-[5]: {filename}../images/一次不成功的Kindle维修/5.png
-[6]: {filename}../images/一次不成功的Kindle维修/6.png
-[7]: {filename}../images/一次不成功的Kindle维修/7.jpg
-[8]: {filename}../images/一次不成功的Kindle维修/8.jpg
+[1]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/1.png
+[2]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/2.jpg
+[3]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/3.jpg
+[4]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/4.jpg
+[5]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/5.png
+[6]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/6.png
+[7]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/7.jpg
+[8]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/8.jpg

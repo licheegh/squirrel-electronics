@@ -11,7 +11,7 @@ Summary: 在写Verilog程序时, 做的笔记. 主要解释与Xst的沟通过程
 
 ###引言
 
-之前做的XC6SLX25的板子已搞定, 开始写程序了, 本来要总结一下硬件设计部分, 但写了一半画板子太忙就放在那里了. 等有空完善吧~ 
+之前做的XC6SLX25的板子已搞定, 开始写程序了, 本来要总结一下硬件设计部分, 但写了一半画板子太忙就放在那里了. 等有空完善吧~
 
 这是完全不同于写单片机程序的感受, ISE的XST你什么时候能明白我的心, 另外能不能照顾一下我强迫症患者的心, 不要再给警告了,
 
@@ -49,7 +49,7 @@ OK, 进入主题, 在研究 Xst: 3002 时, 我发现Xilinx的WP309 Targeting and
 
 ```
 
-那么FF只有一个Set/Reset引脚, 怎么办呢? Technology schematic: 
+那么FF只有一个Set/Reset引脚, 怎么办呢? Technology schematic:
 
 ![fdrs in Technology schematic][3]
 
@@ -65,11 +65,11 @@ OK, 进入主题, 在研究 Xst: 3002 时, 我发现Xilinx的WP309 Targeting and
 
 ###关于时钟输出.
 
-当你想将一个时钟信号输出时, 就会遇到这个提示, Place:1136, 此时只要将这个时钟信号用下面这个ODDR2来Buffer一下就OK, 
+当你想将一个时钟信号输出时, 就会遇到这个提示, Place:1136, 此时只要将这个时钟信号用下面这个ODDR2来Buffer一下就OK,
 
 ```verilog
 ODDR2 #(
-    .DDR_ALIGNMENT("NONE"), // Sets output alignment to "NONE", "C0" or "C1" 
+    .DDR_ALIGNMENT("NONE"), // Sets output alignment to "NONE", "C0" or "C1"
     .INIT(1'b0),    // Sets initial state of the Q output to 1'b0 or 1'b1
     .SRTYPE("SYNC") // Specifies "SYNC" or "ASYNC" set/reset
 ) ODDR2_inst (
@@ -92,7 +92,7 @@ ODDR2 #(
 
 ![OLOGIC2 in FPGA Editor 2][7]
 
-其中一个的放大图, 由ILOGIC, IODELAY, OLOGIC三个构成, 一个部分有两组, 这样子成双成对应当是为了差分信号. **也就是说每个IO口都有对应的一个OLOGIC可用.** 我记得每个IO口还有什么串转并的SERDES接口又是什么? 
+其中一个的放大图, 由ILOGIC, IODELAY, OLOGIC三个构成, 一个部分有两组, 这样子成双成对应当是为了差分信号. **也就是说每个IO口都有对应的一个OLOGIC可用.** 我记得每个IO口还有什么串转并的SERDES接口又是什么?
 
 ![OLOGIC2 OSERDES in Design Summary][8]
 
@@ -146,12 +146,12 @@ ERROR:Simulator:702
 
 未完待续.
 
-[1]: {filename}../images/用Verilog向ISE解释数字电路/1.png
-[2]: {filename}../images/用Verilog向ISE解释数字电路/2.png
-[3]: {filename}../images/用Verilog向ISE解释数字电路/3.png
-[4]: {filename}../images/用Verilog向ISE解释数字电路/4.png
-[5]: {filename}../images/用Verilog向ISE解释数字电路/5.png
-[6]: {filename}../images/用Verilog向ISE解释数字电路/6.png
-[7]: {filename}../images/用Verilog向ISE解释数字电路/7.png
-[8]: {filename}../images/用Verilog向ISE解释数字电路/8.png
-[9]: {filename}../images/用Verilog向ISE解释数字电路/9.png
+[1]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/1.png
+[2]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/2.png
+[3]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/3.png
+[4]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/4.png
+[5]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/5.png
+[6]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/6.png
+[7]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/7.png
+[8]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/8.png
+[9]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/9.png

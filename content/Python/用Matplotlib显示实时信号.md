@@ -9,11 +9,11 @@ Summary: 系列文章之第一, 怎样在python环境中最简单的实现实时
 
 很久以前, 翻到了[JO32KF的WebSDR](http://websdr.ewi.utwente.nl:8901/), 我靠好先进啊,
 
-![JO32KF的WebSDR截图](../images/用Matplotlib显示实时信号/1.jpg)
+![JO32KF的WebSDR截图](../images/yong-matplotlibxian-shi-shi-shi-xin-hao/1.jpg)
 
 我也想做一个, 于是调查了一下, 支持GNURadio的硬件好贵... 然后就发现了超级便宜的RTL-SDR, x宝搞定一个.
 
-![淘宝RTL-SDR截图](../images/用Matplotlib显示实时信号/2.jpg)
+![淘宝RTL-SDR截图](../images/yong-matplotlibxian-shi-shi-shi-xin-hao/2.jpg)
 
 买回来后, 确实很好玩, 可以听到对讲机, 看到飞机起降, 有意思! 想着自己做个FM解调玩玩吧, 大概调查后发现难度不小. 那么就先从简单的开始做, RTL-SDR有Python的接口, 那么就先在Python上实现一个能实时显示信号的程序吧.
 
@@ -63,7 +63,7 @@ line_ani = animation.FuncAnimation(fig1, update_line, 25, fargs=(data, l),
 #line_ani.save('lines.mp4')
 ```
 
-这个程序生成了25帧的数据, 然后在`animation.FuncAnimation`中只生产25帧plot, 在调用`update_line`时, num会从1到25, 这样就画出了变化的图形,而且每25帧重复. 
+这个程序生成了25帧的数据, 然后在`animation.FuncAnimation`中只生产25帧plot, 在调用`update_line`时, num会从1到25, 这样就画出了变化的图形,而且每25帧重复.
 
 那么也就是说把`frames`设为1,应当就可以显示不同的数据,且每次都清屏.
 而在`update_line`函数中把要显示的数据return回去就可以了.
@@ -83,7 +83,7 @@ linem = line.Line2D([],[])
 def init():
     ax.add_line(linem)
     return linem,
-    
+
 def update(i):
     linem.set_xdata(np.arange(0,10,1))
     linem.set_ydata(np.random.rand(10))
@@ -92,7 +92,7 @@ def update(i):
 fig.show()
 
 ani = animation.FuncAnimation(fig, update,
-                              init_func=init, 
+                              init_func=init,
                               frames=1,
                               interval=1,
                               blit=True)
@@ -100,7 +100,7 @@ ani = animation.FuncAnimation(fig, update,
 raw_input("wait")
 ```
 
-![程序运行截图](../images/用Matplotlib显示实时信号/3.gif)
+![程序运行截图](../images/yong-matplotlibxian-shi-shi-shi-xin-hao/3.gif)
 
 
 嗯~看起来简单, 调了两天哦~ init函数是必须的, 在blit使能时, 如没有init函数, animation会将update的第一帧作为初始话, 你就会看到一个不消失的曲线. 而那个奇怪的`return linem,`意思是[返回一个unpack的tuple,参考stackoverflow](http://stackoverflow.com/questions/16037494/python-code-is-it-comma-operator) 而为什么要返回这个奇怪的东西, 我也是大概理解,[ animation的API文档](http://matplotlib.org/1.4.3/api/animation_api.html#matplotlib.animation.FuncAnimation).

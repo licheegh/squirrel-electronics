@@ -65,7 +65,7 @@ UmTRX           | XC6SLX75      | LMS6002D      | ET1011C2      | 14M   | 使用
 
 根据wiki, USB 2.0可以达到35MBps, 而采用2.0的开源项目都可以采集到16M宽的频谱, 最大20M, 而3.0就不用说了Ettus的B200可以达到60M. 但本人目前没有USB 3.0的电脑,  而千兆网很普及, 我家路由和所有电脑一律都有千兆网. 千兆网应当可达到100M没有问题, 这些项目中Ettus公司的N2x0达到了50M, 我偶像达到25M.
 
-其实对于大多数应用, 我个人觉得有10M就够用了. 当然如果可以到20M, FM广播就全覆盖了. USB的开发难度应当是不高的, Cypress公司肯定有各种应用的参考程序可供使用, 要使用其他公司的有USB的MCU也应当是很容易的. 上位机开发有[PyUSB](https://walac.github.io/pyusb/)据说是开箱即用, 我想一定不难. 
+其实对于大多数应用, 我个人觉得有10M就够用了. 当然如果可以到20M, FM广播就全覆盖了. USB的开发难度应当是不高的, Cypress公司肯定有各种应用的参考程序可供使用, 要使用其他公司的有USB的MCU也应当是很容易的. 上位机开发有[PyUSB](https://walac.github.io/pyusb/)据说是开箱即用, 我想一定不难.
 
 * [PHYS Ethernet or FPGA](http://electronics.stackexchange.com/questions/49407/phys-ethernet-or-fpga) 回答说Ethernet这玩意儿很难, 轻易不要碰.
 * [Retrieving samples from an FPGA using Ethernet](http://electronics.stackexchange.com/questions/103955/retrieving-samples-from-an-fpga-using-ethernet?rq=1) 这篇问答提到其实要做点对点的连接很简单, 直接广播就可以了.
@@ -91,7 +91,7 @@ OK, 总结一下:
 其实我用这个东东也就是玩玩, 那些高带宽的应用我肯定是不需要的, 而我感兴趣的应用大多数应都不会大于1M的带宽. 另外我想与其将带宽做到最大, 不如将可接收的范围扩大, 比如很火爆的hackRF one, 它可以工作的带宽达到30M-6G, 虽然只有20M的带宽, 但依然挡不住它的火爆.
 
 **因此我决定采用古老的USB2.0 HS.**
-    
+
 ---
 
 ###ADC接口
@@ -164,7 +164,7 @@ DSP     | 20        | 20        | 32        | 45
 
 OK, 那也就是说, 老一代的3系列产品在价格上并没有优势, 而性能还不如新产品, 那么我面临的选择就是Artix和Spartan-6. 新的Artix虽然在CLB上并没有太大的改进, 但是在CLB的排列方式上有很大改进, 而且新的DSP模块支持ALU也挺吸引人, 但其新增的PCI-E和GTP我完全用不上. 另外电源多了一组. 复杂度增加.
 
-据我之前在马云家询的价, Vivado Webpack版本支持的最低档Artix-7(XC7A35T)要价300+, 还没有现货, 从digikey买也差不多是这价, 而Spartan-6便宜很多, 马云家FTG256的LX25竟然只要不到100. 在开发软件方面Artix也不是很友好, 不能使用15T外, 还必须是win7 64bit. 
+据我之前在马云家询的价, Vivado Webpack版本支持的最低档Artix-7(XC7A35T)要价300+, 还没有现货, 从digikey买也差不多是这价, 而Spartan-6便宜很多, 马云家FTG256的LX25竟然只要不到100. 在开发软件方面Artix也不是很友好, 不能使用15T外, 还必须是win7 64bit.
 
 **因此我很倾向于用Spartan-6.**
 
@@ -180,10 +180,10 @@ OK, 那也就是说, 老一代的3系列产品在价格上并没有优势, 而�
 2. ADC部分.
 3. 其他外围器件.
 
-[1]: {filename}../images/选择用于低成本软件无线电的FPGA/1.jpg
-[2]: {filename}../images/选择用于低成本软件无线电的FPGA/2.jpg
-[3]: {filename}../images/选择用于低成本软件无线电的FPGA/3.png
-[4]: {filename}../images/选择用于低成本软件无线电的FPGA/4.png
+[1]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/1.jpg
+[2]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/2.jpg
+[3]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/3.png
+[4]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/4.png
 
 [^1]: 这一行数据主要来自各自器件的DC and AC switching characteristic中的Recommended Operating Conditions.
 [^2]: 根据ug482, Chap 5, Pin Description and Design Guidelines, GTP的电源如不用可以接地. 根据ug480, Chap 1, Table 1-1, XADC如不用可以将电源与Vccaux接在一起. 那么IO + aux + int&bram就是三组电源, 当然如果IO用1.8v, 就可以减少到2组.

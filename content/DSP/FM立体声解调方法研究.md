@@ -47,7 +47,7 @@ Summary: 介绍了一下啥是FM立体声, 研究了一些FM立体声解码的�
 
 ###US7181018B1 Digital Stereo Recovery Circuitry and Method for Radio Receivers
 
-找了一圈很无奈的我决定翻专利, 痛苦... 在这个Cirrus Logic公司的patent中, 描述了一个pilot doubler的东东. 
+找了一圈很无奈的我决定翻专利, 痛苦... 在这个Cirrus Logic公司的patent中, 描述了一个pilot doubler的东东.
 
 ![US7181018B1 Pilot Doubler][3]
 
@@ -99,13 +99,13 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 ----
 
-###US8406717B1 Digital FM Stereo Receiver Architecture to Recover Carrier Information Based On Stereo or Mono Signals 
+###US8406717B1 Digital FM Stereo Receiver Architecture to Recover Carrier Information Based On Stereo or Mono Signals
 
 此乃Marvell公司的专利, 08年还是蛮新的哦.
 
 ![US8406717B1 Pilot Tone Recovery][8]
 
-文中的方法为, 首先由410来做BP, 然后由420做平方, 
+文中的方法为, 首先由410来做BP, 然后由420做平方,
 
 ![US8406717B1 Squaring Equation][9]
 
@@ -115,7 +115,7 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 ----
 
-###US5471534 Devices, Systems and Methods for Composite Signal Decoding Employing Interpolation Filter 
+###US5471534 Devices, Systems and Methods for Composite Signal Decoding Employing Interpolation Filter
 
 来自TI, 看到配图后我震惊了, TI有诚意啊. Marvell那图画的真是烂啊.
 
@@ -135,7 +135,7 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 然后...然后TI给出了源代码...而且每个语句都有注释, TI这是啥意思? 发个专利专门宣传C30这个DSP吗? 另外关键算法竟然是用汇编写的, 于是我默默打开了[TMS320C3x User’s Guide](http://www.ti.com/lit/ug/spru031f/spru031f.pdf)
 
-![US5471534 pilot assembly code]({filename}../images/FM立体声解调方法研究/11.png)
+![US5471534 pilot assembly code]({filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/11.png)
 
 MPYF 的意思是后边两个浮点数相乘, 放在后面的寄存器里.  
 LDF load float, 前放后.  
@@ -182,7 +182,7 @@ OK, 在研究了一段时间后我发现完全不可理解, 我明白polyphase�
 
 ![US5239585 stereo demod][15]
 
-然后TI讲了一下他对US4723288的理解. 
+然后TI讲了一下他对US4723288的理解.
 
 ![US5239585 equ 1][16]
 
@@ -206,13 +206,13 @@ TI也说了一下moto这个东东的缺点, 他说如果相位差了一点儿, �
 
 ----
 
-###US6901146 All-Digital FM Stereo Demodulator and Demodulation Method 
+###US6901146 All-Digital FM Stereo Demodulator and Demodulation Method
 
 来自Mitsubishi的方案, 采用的方法与之前类似, 但他介绍说他是从一篇论文得到的灵感[A DSP-Based Stereo Decoder for Automotive Radio](http://papers.sae.org/900244/), 这篇我没找到, 就只能看三菱写的读后感了.
 
 ![US6901146 prior art][19]
 
-可以看到是调整ADC的采样来获得L和R的, 他说在11位置, 产生的是VCO相位和输入pilot之间的差, 然后通过这个差来控制VCO来实现类似PLL的锁定相位的功能. 12,13构成的功能是根据输入的频率信号来分频除8, 后控制一个8个sample大小的LUT来产生mix用的信号. 两个频率一样, 相位不同的信号乘后产生一个固定的偏差? 参考[三角恒等式](https://zh.wikipedia.org/zh/%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%BC%8F)的积化和差等式, 
+可以看到是调整ADC的采样来获得L和R的, 他说在11位置, 产生的是VCO相位和输入pilot之间的差, 然后通过这个差来控制VCO来实现类似PLL的锁定相位的功能. 12,13构成的功能是根据输入的频率信号来分频除8, 后控制一个8个sample大小的LUT来产生mix用的信号. 两个频率一样, 相位不同的信号乘后产生一个固定的偏差? 参考[三角恒等式](https://zh.wikipedia.org/zh/%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%BC%8F)的积化和差等式,
 结果为一个倍频信号+ or - 一个固定的直流信号. 本方案里, 这个直流信号用来控制VCO.
 
 而且13还控制着7和8的latch.
@@ -225,7 +225,7 @@ TI也说了一下moto这个东东的缺点, 他说如果相位差了一点儿, �
 
 如当15设16为31, 然后M每31个count调整5从32至31. 那么就调整了参考频率的(M\*N-1)/(M\*N)(原文为(M-N-1)/(M-N)=991/992 ?)也就是增加了0.1%.
 
-好吧, 我理理, 采样频率为4.864M, 那么对于38k信号来说是每个周期有128个采样(分辨率2.8度), 当抽取32时, 则是每个周期4个采样, 如果刚好同频率的话, 那么就刚好可以采出L和R, 如果有调整, 如是31时, 则是4.129个采样, 换句话说, 此时的内部采样频率为156.9k与之前在32时的152k相差4.9k 也就是差不多3%的样子. 而三菱说是0.1% ? 为啥? 
+好吧, 我理理, 采样频率为4.864M, 那么对于38k信号来说是每个周期有128个采样(分辨率2.8度), 当抽取32时, 则是每个周期4个采样, 如果刚好同频率的话, 那么就刚好可以采出L和R, 如果有调整, 如是31时, 则是4.129个采样, 换句话说, 此时的内部采样频率为156.9k与之前在32时的152k相差4.9k 也就是差不多3%的样子. 而三菱说是0.1% ? 为啥?
 
 然后三菱又介绍了一堆类似的方案.
 
@@ -301,32 +301,32 @@ CN1826741A 是中文版, 看到配图我也是醉了. 飞利浦你想怎么样?
 
 
 
-[1]: {filename}../images/FM立体声解调方法研究/1.png
-[2]: {filename}../images/FM立体声解调方法研究/2.png
-[3]: {filename}../images/FM立体声解调方法研究/3.png
-[4]: {filename}../images/FM立体声解调方法研究/4.png
-[5]: {filename}../images/FM立体声解调方法研究/5.png
-[6]: {filename}../images/FM立体声解调方法研究/6.png
-[7]: {filename}../images/FM立体声解调方法研究/7.png
-[8]: {filename}../images/FM立体声解调方法研究/8.png
-[9]: {filename}../images/FM立体声解调方法研究/9.png
-[10]: {filename}../images/FM立体声解调方法研究/10.png
-[11]: {filename}../images/FM立体声解调方法研究/11.png
-[12]: {filename}../images/FM立体声解调方法研究/12.png
-[13]: {filename}../images/FM立体声解调方法研究/13.png
-[14]: {filename}../images/FM立体声解调方法研究/14.png
-[15]: {filename}../images/FM立体声解调方法研究/15.png
-[16]: {filename}../images/FM立体声解调方法研究/16.png
-[17]: {filename}../images/FM立体声解调方法研究/17.png
-[18]: {filename}../images/FM立体声解调方法研究/18.png
-[19]: {filename}../images/FM立体声解调方法研究/19.png
-[20]: {filename}../images/FM立体声解调方法研究/20.png
-[21]: {filename}../images/FM立体声解调方法研究/21.png
-[22]: {filename}../images/FM立体声解调方法研究/22.png
-[23]: {filename}../images/FM立体声解调方法研究/23.png
-[24]: {filename}../images/FM立体声解调方法研究/24.png
-[25]: {filename}../images/FM立体声解调方法研究/25.png
-[26]: {filename}../images/FM立体声解调方法研究/26.png
-[27]: {filename}../images/FM立体声解调方法研究/27.png
-[28]: {filename}../images/FM立体声解调方法研究/28.gif
-[29]: {filename}../images/FM立体声解调方法研究/29.gif
+[1]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/1.png
+[2]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/2.png
+[3]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/3.png
+[4]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/4.png
+[5]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/5.png
+[6]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/6.png
+[7]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/7.png
+[8]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/8.png
+[9]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/9.png
+[10]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/10.png
+[11]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/11.png
+[12]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/12.png
+[13]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/13.png
+[14]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/14.png
+[15]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/15.png
+[16]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/16.png
+[17]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/17.png
+[18]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/18.png
+[19]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/19.png
+[20]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/20.png
+[21]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/21.png
+[22]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/22.png
+[23]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/23.png
+[24]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/24.png
+[25]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/25.png
+[26]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/26.png
+[27]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/27.png
+[28]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/28.gif
+[29]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/29.gif

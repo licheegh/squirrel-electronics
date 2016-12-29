@@ -130,7 +130,7 @@ PC-FX2-FPGA loopback 搞定. 上位机使用Python的PyUSB.
 ![fm spectrum][22]
 
 那么接下来就是要把FM解调部分搬到FPGA里，对于正交信号，有两个选择(方法可参考前面多篇FM解调的文章):
-   
+
 1. 做除法
 2. 做反正切
 
@@ -145,25 +145,25 @@ PC-FX2-FPGA loopback 搞定. 上位机使用Python的PyUSB.
 
 未完待续.
 
-[1]: {filename}../images/LCSDR工程/1.jpg
-[2]: {filename}../images/LCSDR工程/2.jpg
-[3]: {filename}../images/LCSDR工程/3.jpg
-[4]: {filename}../images/LCSDR工程/4.jpg
-[5]: {filename}../images/LCSDR工程/5.jpg
-[6]: {filename}../images/LCSDR工程/6.jpg
-[7]: {filename}../images/LCSDR工程/7.jpg
-[8]: {filename}../images/LCSDR工程/8.jpg
-[9]: {filename}../images/LCSDR工程/9.jpg
-[10]: {filename}../images/LCSDR工程/10.png
-[11]: {filename}../images/LCSDR工程/11.png
-[12]: {filename}../images/LCSDR工程/12.png
-[13]: {filename}../images/LCSDR工程/13.jpg
-[14]: {filename}../images/LCSDR工程/14.jpg
-[15]: {filename}../images/LCSDR工程/15.png
-[16]: {filename}../images/LCSDR工程/16.png
-[17]: {filename}../images/LCSDR工程/17.gif
-[18]: {filename}../images/LCSDR工程/18.gif
-[19]: {filename}../images/LCSDR工程/19.jpg
-[20]: {filename}../images/LCSDR工程/20.jpg
-[21]: {filename}../images/LCSDR工程/21.jpg
-[22]: {filename}../images/LCSDR工程/22.png
+[1]: {filename}../images/lcsdrgong-cheng/1.jpg
+[2]: {filename}../images/lcsdrgong-cheng/2.jpg
+[3]: {filename}../images/lcsdrgong-cheng/3.jpg
+[4]: {filename}../images/lcsdrgong-cheng/4.jpg
+[5]: {filename}../images/lcsdrgong-cheng/5.jpg
+[6]: {filename}../images/lcsdrgong-cheng/6.jpg
+[7]: {filename}../images/lcsdrgong-cheng/7.jpg
+[8]: {filename}../images/lcsdrgong-cheng/8.jpg
+[9]: {filename}../images/lcsdrgong-cheng/9.jpg
+[10]: {filename}../images/lcsdrgong-cheng/10.png
+[11]: {filename}../images/lcsdrgong-cheng/11.png
+[12]: {filename}../images/lcsdrgong-cheng/12.png
+[13]: {filename}../images/lcsdrgong-cheng/13.jpg
+[14]: {filename}../images/lcsdrgong-cheng/14.jpg
+[15]: {filename}../images/lcsdrgong-cheng/15.png
+[16]: {filename}../images/lcsdrgong-cheng/16.png
+[17]: {filename}../images/lcsdrgong-cheng/17.gif
+[18]: {filename}../images/lcsdrgong-cheng/18.gif
+[19]: {filename}../images/lcsdrgong-cheng/19.jpg
+[20]: {filename}../images/lcsdrgong-cheng/20.jpg
+[21]: {filename}../images/lcsdrgong-cheng/21.jpg
+[22]: {filename}../images/lcsdrgong-cheng/22.png

@@ -11,7 +11,10 @@ PATH = 'content'
 TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh'
-LOCALE = ['zh_CN.UTF-8','en_HK.UTF-8']
+#LOCALE = ['zh_CN.UTF-8','en_HK.UTF-8']
+LOCALE = ('chn','usa',
+        'zh_CN','en_US'
+        )
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -133,7 +136,15 @@ BOOTSTRAPIFY = {
 }
 #DIRECT_TEMPLATES = (('search',))
 #MD_EXTENSIONS = ['toc','codehilite(css_class=highlight,linenums=True)','extra']
-MD_EXTENSIONS = ['toc','codehilite(css_class=highlight)','extra']
+MARKDOWN = {
+        'extension_configs': {
+            'markdown.extensions.codehilite': {'css_class': 'highlight'},
+            'markdown.extensions.extra': {},
+            'markdown.extensions.toc': {},
+            'markdown.extensions.meta': {},
+            },
+        'output_format': 'html5',
+        }
 
 #这个东西就是像文件夹一样显示一个路径
 #DISPLAY_BREADCRUMBS = True

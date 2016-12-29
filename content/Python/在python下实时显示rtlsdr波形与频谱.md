@@ -14,13 +14,13 @@ Summary: 系列文章之第三, 本文中用之前学到的方法实时显示从
 
 运行截图
 
-![程序运行截图]({filename}../images/在python下实时显示rtlsdr波形与频谱/4.png)
+![程序运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/4.png)
 
 之前已经实现了从声卡读取数据再显示, 那么现在用在rtlsdr上, 就只是读数据接口的问题, 只要把读取数据的接口换成rtlsdr的, 外加一些数据转换, 就OK.
 
 这里用的python库是[pyrtlsdr](https://github.com/roger-/pyrtlsdr)试用了一下两个例子, [demo_waterfall.py](https://github.com/roger-/pyrtlsdr/blob/master/demo_waterfall.py) 都做成这个高级样子了... 当然我自己的还是要继续写的.
 
-![demo_waterfall.py运行截图]({filename}../images/在python下实时显示rtlsdr波形与频谱/1.JPG)
+![demo_waterfall.py运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/1.JPG)
 
 我在test.py中看到有这么个函数, 嗯~这不是和pyaudio中的一样嘛, 于是我兴高采烈的换上去试了一下.
 
@@ -47,7 +47,7 @@ def test_callback(samples, rtlsdr_obj):
         '''
 ```
 
-结束async就关闭设备好了, 为啥要cancel? **callback永远不会停止?** 一头雾水的我决定先试试. 结果悲剧, 程序每次开始callback后, 就如同死机一般. 更改要读的数据大小无用. google `read_samples_async + rtlsdr` 就只有一页结果. 
+结束async就关闭设备好了, 为啥要cancel? **callback永远不会停止?** 一头雾水的我决定先试试. 结果悲剧, 程序每次开始callback后, 就如同死机一般. 更改要读的数据大小无用. google `read_samples_async + rtlsdr` 就只有一页结果.
 
 最后我终于想到了这玩意要看原c语言版本的说明, 这只是一个套在dll库文件上的python接口. 于是我找来[librtlsdr的c代码](https://github.com/steve-m/librtlsdr), 看了一下[rtlsdr.h头文件](https://github.com/steve-m/librtlsdr/blob/master/include/rtl-sdr.h).
 
@@ -82,11 +82,11 @@ fft_data=np.abs(fft_temp_data)[0:fft_temp_data.size]    #计算幅度
 
 数据处理过程如上, 然后我把接收频率(center frequency)调整到先锋89.8附近, 以它为基准, 看看调整接收频率先锋89.8会往哪个方向移动.
 
-![COMPLEX INPUT FFT 分析]({filename}../images/在python下实时显示rtlsdr波形与频谱/2.png)
+![COMPLEX INPUT FFT 分析]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/2.png)
 
-首先在设定为90MHz时, 先锋位于右半边, 也就是传说中的负频率部分, 如果是实输入信号, 则这部分与左半边是重复的. 当增加接收频率时, 先锋向左移动. OK, 那么首先89.8MHz离我们设定的90MHz的距离是-0.2MHz, 当增加到90.1MHz时,距离为-0.3MHz, 那么也就是说这里就是传说中的负频率部分, 这部分的最右边是设定的接收频率, 最左边是接收频率减去采样率的一半, 也就是89.5MHz(90MHz).在最后一张图中,当设定接收频率小于89.8MHz时, 先锋就跑到正频率的部分里. 
+首先在设定为90MHz时, 先锋位于右半边, 也就是传说中的负频率部分, 如果是实输入信号, 则这部分与左半边是重复的. 当增加接收频率时, 先锋向左移动. OK, 那么首先89.8MHz离我们设定的90MHz的距离是-0.2MHz, 当增加到90.1MHz时,距离为-0.3MHz, 那么也就是说这里就是传说中的负频率部分, 这部分的最右边是设定的接收频率, 最左边是接收频率减去采样率的一半, 也就是89.5MHz(90MHz).在最后一张图中,当设定接收频率小于89.8MHz时, 先锋就跑到正频率的部分里.
 
-![负频率部分说明]({filename}../images/在python下实时显示rtlsdr波形与频谱/3.png)
+![负频率部分说明]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/3.png)
 
 应当注意的是, 这里我们设定的接收频率是更改的接收电路的本振频率以及一些滤波器的参数, 与采样部分没有什么关系, 采样部分始终都是以8-bit 1MSPS的速度进行采样.
 
@@ -97,4 +97,3 @@ fft_temp_data=fftpack.fftshift(fftpack.fft(data,overwrite_x=True))
 ```
 
 在加上这个函数后, 终于我得到的FFT图与demo_waterfall.py是一致的了.
-

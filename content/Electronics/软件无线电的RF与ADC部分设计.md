@@ -79,7 +79,7 @@ Ettus公司其他系列都使用的类似AD9862这样的ADC, 通过接不同的�
 
 ###ADC
 
-型号        | Res | SR | SNR | SFDR | PC(Typ) | AIB | vcc | Price | Pkg     | Comment 
+型号        | Res | SR | SNR | SFDR | PC(Typ) | AIB | vcc | Price | Pkg     | Comment
 -           |   - | -  |  -  |  -   |  -      |  -  | -   |  -    | -       |
 LTC2141-12  | 12  | 40 | 70.8| 89   | 65      | 750 | 1.8 | 11.5  | QFN64   |
 AD9231-40   | 12  | 40 | 71.5| 90   | 121.5   | 700 | 1.8 | 12    | LFCSP64 | rs146
@@ -102,7 +102,7 @@ AVDD 2.7~3.6 200m       | VCC 3.0~3.6 85m| VCCINT 1.2 1.2A    | VDDA 1.8~3.6 3ma
 DRVDD 2.3~3.6 10m@2.5   |                | VCCAUX 2.5,3.3 40m | VDDD 1.8~3.6 2ma
                         |                | VCCO 1.1~3.45 30m  |
 其中FPGA的VCCAUX
-    
+
 1. 如接2.5V可以减少功耗40%.
 2. 如果在配置时, VCCO_2为1.8V, 则VCCAUX必须为2.5V
 3. 如果VCCO_2为2.5V或3.3V,则VCCAUX可以为2.5V或3.3V
@@ -115,7 +115,7 @@ TPS562
 
 LMR10515
 LMR10520
-TLV62090 
+TLV62090
 TLV62065
 LM2831
 TPS62060
@@ -124,23 +124,23 @@ TPS62065
 TPS62067
 TLV62130
 TPS62140
-TPS62085 
-TPS62090 
-TPS62130 
+TPS62085
+TPS62090
+TPS62130
 
 项目名称        | 时钟          
 -               | -             
 [PA3FWM][L1]    | Crystal       
-[bladeRF][L3]   | DAC Controlled VCXO to Clk buffer SI5338 
+[bladeRF][L3]   | DAC Controlled VCXO to Clk buffer SI5338
 Ettus USRP1     | TCXO AD9513
 Ettus USRP2     | TCXO AD9510 & exclk DS90CP22 AD9510
-[Ettus B100][L4]| TCXO AD9522 
+[Ettus B100][L4]| TCXO AD9522
 Ettus B2x0      | TCXO ADF4001
 Ettus N2x0      | TCXO SY89545L AD9510
 HackRF One      | SI5351
 [HPSDR][L5]&Hermes| VCXO SN65LVDM180D + 10M TCXO for FPGA
 [Myriad-RF][L6] | VCTCXO CDCV304PW
-OsmoSDR         | SI570 SN65LVDS2 
+OsmoSDR         | SI570 SN65LVDS2
 UmTRX           | VCTCXO SI5330
 
 1. 时域
@@ -170,19 +170,19 @@ http://www.xilinx.com/support/documentation/sw_manuals/xilinx14_7/isehelp_start.
 [CMX994](http://www.radiolocman.com/news/new.html?di=63542)
 
 
-[1]: {filename}../images/软件无线电架构选择/1.jpg
-[2]: {filename}../images/软件无线电架构选择/2.gif
-[3]: {filename}../images/软件无线电架构选择/3.gif
-[4]: {filename}../images/软件无线电架构选择/4.gif
-[5]: {filename}../images/软件无线电架构选择/5.jpg
-[6]: {filename}../images/软件无线电架构选择/6.jpg
-[7]: {filename}../images/软件无线电架构选择/7.jpg
-[8]: {filename}../images/软件无线电架构选择/8.jpg
-[9]: {filename}../images/软件无线电架构选择/9.jpg
-[10]: {filename}../images/软件无线电架构选择/10.jpg
-[11]: {filename}../images/软件无线电架构选择/11.png
-[12]: {filename}../images/软件无线电架构选择/12.png
-[13]: {filename}../images/软件无线电架构选择/13.png
-[14]: {filename}../images/软件无线电架构选择/14.png
+[1]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/1.jpg
+[2]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/2.gif
+[3]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/3.gif
+[4]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/4.gif
+[5]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/5.jpg
+[6]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/6.jpg
+[7]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/7.jpg
+[8]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/8.jpg
+[9]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/9.jpg
+[10]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/10.jpg
+[11]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/11.png
+[12]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/12.png
+[13]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/13.png
+[14]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/14.png
 
 [^1]: 这一行数据主要来自各自器件的DC and AC switching characteristic中的Recommended Operating Conditions.

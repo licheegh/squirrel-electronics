@@ -38,7 +38,7 @@ Summary: 系列文章之第四, 本文是最终篇, 汇集之前所学, 写一�
 
 numpy具有arctan2函数, 但它同时还有一个专门[求复数角度的angle函数](http://docs.scipy.org/doc/numpy/reference/generated/numpy.angle.html), 这样就不用分开复数实部和虚部, 直接把复数数据给angle函数就OK.
 
-但是在实际中, 我发现这个处理的步骤有问题, 之所以要先抽取后做反正切, 原因是为了减少运算量, 问题就出在这里: **当采样率降低后, 采样点之间的复角变化也加大了.**为了找到这个结论, 我专门写了一个[验证FM解调的程序](https://github.com/licheegh/dig_sig_py_study/blob/master/RTL_PY/fm_mod_demod.py)来调试不同的方法. 
+但是在实际中, 我发现这个处理的步骤有问题, 之所以要先抽取后做反正切, 原因是为了减少运算量, 问题就出在这里: **当采样率降低后, 采样点之间的复角变化也加大了.**为了找到这个结论, 我专门写了一个[验证FM解调的程序](https://github.com/licheegh/dig_sig_py_study/blob/master/RTL_PY/fm_mod_demod.py)来调试不同的方法.
 
 首先介绍一下信号产生方法
 ```python
@@ -57,16 +57,16 @@ angle_data=np.angle(xCa)
 audiodata=np.diff(angle_data)
 ```
 
-![解调方法1 调制度3.1]({filename}../images/在python下通过RTLSDR收听FM广播/1.png)
+![解调方法1 调制度3.1]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/1.png)
 
 第一行为输入信号, 中间两行为调制后的real和imag波形, 最后为解调后的信号. 这时的调制度是3.1. 我们增加到3.2, 程序就会出现问题.
 
-![解调方法1 调制度3.2]({filename}../images/在python下通过RTLSDR收听FM广播/2.png)
+![解调方法1 调制度3.2]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/2.png)
 
 输出出现了尖峰, 它是由于
 
-![解调出现尖峰的原因]({filename}../images/在python下通过RTLSDR收听FM广播/3.png)
-   
+![解调出现尖峰的原因]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/3.png)
+
 从-pi到pi的转换导致的尖峰.
 
 方法2: 加上unwrap
@@ -77,25 +77,25 @@ audioda=np.diff(angle_data)
 audiodata=np.unwrap(audioda)
 ```
 
-![解调方法2 调制度3.2]({filename}../images/在python下通过RTLSDR收听FM广播/4.png)
+![解调方法2 调制度3.2]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/4.png)
 
 可以看到这个unwrap程序神奇的把错误的尖峰去掉了.
 
-![unwrap结果]({filename}../images/在python下通过RTLSDR收听FM广播/5.png)
+![unwrap结果]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/5.png)
 
 但在调制度增加到300时, unwrap的结果也不是很好看.
 
-![解调方法2 调制度300]({filename}../images/在python下通过RTLSDR收听FM广播/6.png)
+![解调方法2 调制度300]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/6.png)
 
 方法3: 求反正切-求差-unwrap-抽取
 
 将抽取放在后面, 可以很显著的减少每个采样间的角度差.
 
-![解调方法3 调制度300]({filename}../images/在python下通过RTLSDR收听FM广播/7.png)
+![解调方法3 调制度300]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/7.png)
 
 当然这样也还是有上限. 调制度1000000.
 
-![解调方法3 调制度1000]({filename}../images/在python下通过RTLSDR收听FM广播/8.png)
+![解调方法3 调制度1000]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/8.png)
 
 ###输出给Pyaudio
 
@@ -110,9 +110,8 @@ snd_data = audiodata_amp.astype(np.dtype('<i2')).tostring()
 
 在程序终于输出广播后真是令人高兴啊, 但随之而来的是经常弹出错误:
 
-![解调方法3 调制度1000]({filename}../images/在python下通过RTLSDR收听FM广播/9.jpg)
+![解调方法3 调制度1000]({filename}../images/zai-pythonxia-tong-guo-rtlsdrshou-ting-fmyan-bo/9.jpg)
 
 这是为啥呢~搜到[Python's Hardest Problem](http://www.jeffknupp.com/blog/2012/03/31/pythons-hardest-problem/), 然后似乎明白了, 我猜测是这样子的, 我的thread中有callback的程序, 而且还是block的, 那么当有数据需要写入时, python的GIL还没有运行到这个thread, 或者在数据复制时GIL切换了thread, 那么有可能会造成这个问题. 那么把那个rtlsdr的callback换成直接读取不就OK了么? 换了read_samples以后, 我发现不行, 直接读取的这个函数会丢数据.
 
 好吧, 于是我把程序写成了multiprocessing模式. 就再也没出那个错误.
-

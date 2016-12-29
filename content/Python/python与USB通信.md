@@ -11,11 +11,11 @@ Summary: 上位机与CY7C68013A的USB通信, 自然是要用Python来完成.
 
 首先当然是看看在硬件设计阶段[选择用于低成本软件无线电的FPGA]({filename}../Electronics/选择用于低成本软件无线电的FPGA.md)查到的[PyUSB](https://walac.github.io/pyusb/).
 
-PyUSB依赖于一些USB的驱动程序, 这个貌似叫做[无驱驱动](http://wenku.baidu.com/view/98ebaf4a2b160b4e767fcfbe.html), 其中libusb是一统天下者, 当然就要用这个咯. 那么问题来了, libusb这个驱动是怎么装到要开发的设备上呢? 在windows下答案是[Zadig](http://zadig.akeo.ie/), 这个和rtlsdr用的方案是一致的. 
+PyUSB依赖于一些USB的驱动程序, 这个貌似叫做[无驱驱动](http://wenku.baidu.com/view/98ebaf4a2b160b4e767fcfbe.html), 其中libusb是一统天下者, 当然就要用这个咯. 那么问题来了, libusb这个驱动是怎么装到要开发的设备上呢? 在windows下答案是[Zadig](http://zadig.akeo.ie/), 这个和rtlsdr用的方案是一致的.
 
 下载了最新的Zadig然后选list all device, 可选择的列表里只有WinUSB(这是微软的吧?), libusbk(贵圈好乱), libusb-win32. libusb官网不是说和libusb-win32合并了么? 好吧, 只有选这个了. 但这个相当于libusb 0.1版本的, 估计和OS有关, 我是老迈的xp.
 
-装上后, 给Python装上PyUSB(官网下载后, 按里面说明装), 
+装上后, 给Python装上PyUSB(官网下载后, 按里面说明装),
 
 ```python
 import usb
@@ -67,7 +67,7 @@ always@(*)begin
         slrd_n = 1'b1;
         sloe_n = 1'b1;
     end
-end	
+end
 
 always@(*) begin
 ...
@@ -105,14 +105,14 @@ always@(*) begin
 Python显示实时数据的框架由之前[在python下实时显示麦克风波形与频谱]({filename}在python下实时显示麦克风波形与频谱.md)提供. 将数据源从pyaudio换为PyUSB, 搞定.
 
 
-[1]: {filename}../images/python与USB通信/1.png
-[2]: {filename}../images/python与USB通信/2.png
-[3]: {filename}../images/python与USB通信/3.png
-[4]: {filename}../images/python与USB通信/4.png
-[5]: {filename}../images/python与USB通信/5.png
-[6]: {filename}../images/python与USB通信/6.png
-[7]: {filename}../images/python与USB通信/7.png
-[8]: {filename}../images/python与USB通信/8.png
-[9]: {filename}../images/python与USB通信/9.png
-[10]: {filename}../images/python与USB通信/10.png
-[11]: {filename}../images/python与USB通信/11.gif
+[1]: {filename}../images/pythonyu-usbtong-xin/1.png
+[2]: {filename}../images/pythonyu-usbtong-xin/2.png
+[3]: {filename}../images/pythonyu-usbtong-xin/3.png
+[4]: {filename}../images/pythonyu-usbtong-xin/4.png
+[5]: {filename}../images/pythonyu-usbtong-xin/5.png
+[6]: {filename}../images/pythonyu-usbtong-xin/6.png
+[7]: {filename}../images/pythonyu-usbtong-xin/7.png
+[8]: {filename}../images/pythonyu-usbtong-xin/8.png
+[9]: {filename}../images/pythonyu-usbtong-xin/9.png
+[10]: {filename}../images/pythonyu-usbtong-xin/10.png
+[11]: {filename}../images/pythonyu-usbtong-xin/11.gif

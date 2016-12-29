@@ -16,7 +16,7 @@ Python作为一个无所不能的工具, 当然可以给MSP430下载Firmware.根
 
 因为对python不是很熟, 于是先从表现上分析. bsl硬件上就是串口, 用bus hound 分析在下载时串口的通讯数据发现(此图使用bus hound试用版得到, 有数据长度限制)
 
-![bus hound 图1](../images/在Python下用BSL给MSP430下载Firmware/1.jpg)
+![bus hound 图1](../images/zai-pythonxia-yong-bslgei-msp430xia-zai-firmware/1.jpg)
 
 我的调用指令是
 
@@ -38,7 +38,7 @@ python -m msp430.bsl.target -e -p COM2
 
 在check_extended时读取version导致出错,先注释掉.继续bus hound(这次换了正式版)
 
-![bus hound 2](../images/在Python下用BSL给MSP430下载Firmware/2.jpg)
+![bus hound 2](../images/zai-pythonxia-yong-bslgei-msp430xia-zai-firmware/2.jpg)
 
 发完密码就sync不了了? 可以看到15,16行有两个OUT 80, MCU无响应.查看py源代码发现:
 
@@ -46,9 +46,9 @@ python -m msp430.bsl.target -e -p COM2
 # override reset method: use control line
 def reset(self):
     """Reset the device."""
-       
+
     self.logger.info('Reset device')
-       
+
     # dual reset:
     # 1) use the control line
     # 2) while the control line is used to set the device in reset, also
@@ -99,7 +99,7 @@ Current bootstrap loader version: 2.2 (Device ID: 2955)
 Program ...
 22771 bytes programmed.
 Verify ...
- 
+
 D:\src\Python\pybsl>pause
 Press any key to continue . . .
 ```

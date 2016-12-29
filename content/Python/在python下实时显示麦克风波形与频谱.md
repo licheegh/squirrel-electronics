@@ -15,7 +15,7 @@ Summary: 系列文章之第二, 本文中用之前学到的方法实时显示从
 
 运行截图
 
-![程序运行截图]({filename}../images/在python下实时显示麦克风波形与频谱/1.gif)
+![程序运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-mai-ke-feng-bo-xing-yu-pin-pu/1.gif)
 
 在上一篇中已经实现了实时显示随机的信号, 那么要实现麦克风的音频信号显示, 待实现的就是:
 
@@ -77,6 +77,3 @@ def read_audio_thead(q,stream,frames,ad_rdy_ev):
 ---
 
 这个程序我分别的xp环境下的命令行环境和spyder都测试了一下, OK, 但在命令行环境时, tkinter的界面会在把matplotlib的窗口关掉才弹出来. 我感觉是在这个状态下matplotlib是会在`plt.show()`时会block, 原因未知.
-
-
-

@@ -39,7 +39,7 @@ Summary: radio_receiver完整的实现了一个基于rtl-sdr的收音机, 不限
 ...
 ```
 
-Chrome内置了usb接口, 好吧~ 
+Chrome内置了usb接口, 好吧~
 
 Jacobo Tarrío对文件名的命名很易懂, 我顺利的找到了demodulator-wbfm.js. 超级简单的一个函数.
 
@@ -87,7 +87,7 @@ OK, 清晰明了, 那么我们开始挨个研究吧~
 
 该函数位于dsp.js文件中line 345.
 
-这一段为FM的解调算法, 省略了一开始的抽取, 输入为I与Q, 一进来先抽取, lI和lQ为Last I与Q的意思. 
+这一段为FM的解调算法, 省略了一开始的抽取, 输入为I与Q, 一进来先抽取, lI和lQ为Last I与Q的意思.
 
 ```js
       var real = lI * I[i] + lQ * Q[i];
@@ -96,7 +96,7 @@ OK, 清晰明了, 那么我们开始挨个研究吧~
 
 这个算法是和[阅读librtlsdr中的rtl_fm程序]({filename}阅读librtlsdr中的rtl_fm程序.md)中用的方法完全一致, 也就是[FM解调方法]({filename}FM解调方法.md)中的方案2: **求角度差->atan2**. 详细情况见第一篇文章中的分析.
 
-那么接下来是求atan2, 但atan2是很费cpu的, 因此Jacobo似乎是用了近似的方法, 因此先根据real和imag的值来判断角度在哪个象限, 然后再进行估算. 
+那么接下来是求atan2, 但atan2是很费cpu的, 因此Jacobo似乎是用了近似的方法, 因此先根据real和imag的值来判断角度在哪个象限, 然后再进行估算.
 
 ```js
       var sgn = 1;                  //sqn初始化为0~180
@@ -121,7 +121,7 @@ OK, 清晰明了, 那么我们开始挨个研究吧~
 
 ![equ 1][1]
 
-为什么是45度~180度范围? 我查到的别的资料都是从90度开始的, 我不知道是我看的有问题还是Jacobo的算法有问题, 于是我打算验证一下. 于是我就把这个算法放到python里和`np.angle()`函数做了下对比. 
+为什么是45度~180度范围? 我查到的别的资料都是从90度开始的, 我不知道是我看的有问题还是Jacobo的算法有问题, 于是我打算验证一下. 于是我就把这个算法放到python里和`np.angle()`函数做了下对比.
 
 [对比用程序](https://github.com/licheegh/dig_sig_py_study/blob/master/RTL_PY/google_verify.py)
 
@@ -185,7 +185,7 @@ function ExpAverage(weight, opt_std) {
 ...
 ```
 
-这段程序令我感到很困惑, 按理说这程序应是初始化SIN和COS这两个查找表的吧? 以便后边不用算cos和sin, 但其算法很奇怪, 
+这段程序令我感到很困惑, 按理说这程序应是初始化SIN和COS这两个查找表的吧? 以便后边不用算cos和sin, 但其算法很奇怪,
 
 ![sin and cos gen simplify][3]
 
@@ -295,11 +295,11 @@ vdev和hdev是与输入19k的相位差, 见下面的恒等式, 相乘并LPF后, 
 
 参照下图来看这个表格.
 
-cos(x) <= 0 | 此时hdev <= 0 
+cos(x) <= 0 | 此时hdev <= 0
 -|-
 sin(x) = 0 | 应是用于一开始的第一个点
-sin(x) > 0 | 此时角度位于90度~180度, 超过范围, 则是4 
-sin(x) < 0 | 此时角度为-180度~-90度, 为-4 
+sin(x) > 0 | 此时角度位于90度~180度, 超过范围, 则是4
+sin(x) < 0 | 此时角度为-180度~-90度, 为-4
 **cos(x) > 0** | **此时hdev > 0**
 sin/cos=tan | 此时是-90~90度范围, vdev/hdev
 
@@ -317,14 +317,14 @@ FM解调的方法:   求角度差->求arctan, 这里arctan是用的近似的算�
 
 Jacobo作为一个google的js工程师真是厉害呀, 果然去google工作的都是牛人.
 
-[1]: {filename}../images/阅读chrome的插件radio_receiver/1.gif
-[2]: {filename}../images/阅读chrome的插件radio_receiver/2.png
-[3]: {filename}../images/阅读chrome的插件radio_receiver/3.png
-[4]: {filename}../images/阅读chrome的插件radio_receiver/4.png
-[5]: {filename}../images/阅读chrome的插件radio_receiver/5.png
-[6]: {filename}../images/阅读chrome的插件radio_receiver/6.png
-[7]: {filename}../images/阅读chrome的插件radio_receiver/7.png
-[8]: {filename}../images/阅读chrome的插件radio_receiver/8.png
-[9]: {filename}../images/阅读chrome的插件radio_receiver/9.png
-[10]: {filename}../images/阅读chrome的插件radio_receiver/10.png
-[11]: {filename}../images/阅读chrome的插件radio_receiver/11.png
+[1]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/1.gif
+[2]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/2.png
+[3]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/3.png
+[4]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/4.png
+[5]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/5.png
+[6]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/6.png
+[7]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/7.png
+[8]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/8.png
+[9]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/9.png
+[10]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/10.png
+[11]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/11.png

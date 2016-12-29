@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
 	sanity_checks();
 
-	if (controller.freq_len > 1) 
+	if (controller.freq_len > 1)
 ```
 
 在1179行
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 ... line 1179
 	r = rtlsdr_open(&dongle.dev, (uint32_t)dongle.dev_index);
 ```
-打开设备. 然后根据输入设置一些参数. 到1228行, 
+打开设备. 然后根据输入设置一些参数. 到1228行,
 ```c
 ... line 1228
 	pthread_create(&controller.thread, NULL, controller_thread_fn, (void *)(&controller));
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 
 ###Controller线程
 
-函数名为\*\*controller_thread_fn(void \*arg)\* 程序在设置了几个参数后进入一个while. 
+函数名为\*\*controller_thread_fn(void \*arg)\* 程序在设置了几个参数后进入一个while.
 ```c
 ... line 891
 	/* set up primary channel */
@@ -116,7 +116,7 @@ int verbose_offset_tuning(rtlsdr_dev_t *dev)
 			}
 			break;
 ```
-在main中有这样的操作, 也就是说在有参数为* -f *输入时, 会依次将频率写入*freqs*这个数组, 而*index*就是*freq_len*. 为啥要多个频率? 
+在main中有这样的操作, 也就是说在有参数为* -f *输入时, 会依次将频率写入*freqs*这个数组, 而*index*就是*freq_len*. 为啥要多个频率?
 ```c
 ... line 187
 		"\t-f frequency_to_tune_to [Hz]\n"
@@ -251,7 +251,7 @@ void full_demod(struct demod_state *d)
 	}
 ```
 
-首先分析一下这部分是在做什么, 函数根据ds_p的true or false来执行两种不同的滤波. 那么这个*downsample_passes*是啥? 
+首先分析一下这部分是在做什么, 函数根据ds_p的true or false来执行两种不同的滤波. 那么这个*downsample_passes*是啥?
 
 ```c
 ... line 960 in demod_init
@@ -308,11 +308,11 @@ void low_pass(struct demod_state *d)
 >For N:1 reduction, add N consecutive samples together and output that.   
   Move to the next window of N samples.
 
->The response will not be great, but it is, in fact, a fast down sampling 
+>The response will not be great, but it is, in fact, a fast down sampling
 filter.
 
 >Case closed.
- 
+
 >Eric Jacobsen  
 >Minister of Algorithms  
 >Abineau Communications  
@@ -367,7 +367,7 @@ OK吧~有人说这个可以用, 且和我理解的差不多就行, 等以后再�
 				demod.mode_demod = &fm_demod;}
 ```
 
-嗯~默认的调用*fm_demod*这个函数. 
+嗯~默认的调用*fm_demod*这个函数.
 
 ```c
 ... line 517
@@ -433,15 +433,15 @@ void multiply(int ar, int aj, int br, int bj, int *cr, int *cj)
 
 一个复数的模就是
 
-![复数的模](../images/阅读librtlsdr中的rtl_fm程序/1.png)
+![复数的模](../images/yue-du-librtlsdrzhong-de-rtl_fmcheng-xu/1.png)
 
 则改变虚部对其模没有影响. 而复数乘法为:
 
-![复数乘法](../images/阅读librtlsdr中的rtl_fm程序/2.png)
+![复数乘法](../images/yue-du-librtlsdrzhong-de-rtl_fmcheng-xu/2.png)
 
 可以看到模相乘, 相角相加. 那么我们把第二个数的虚部加个符号有什么效果呢?
 
-![复数图](../images/阅读librtlsdr中的rtl_fm程序/3.png)
+![复数图](../images/yue-du-librtlsdrzhong-de-rtl_fmcheng-xu/3.png)
 
 如果y,也就是虚部变为负的, 则相角应当于变换符号.
 
@@ -513,4 +513,3 @@ atan2返回的范围是-pi至pi, 则除pi后是一个从-1至1的值, 这个值�
 5. OK
 
 说实话,这比我想象的要简单的多.
-
