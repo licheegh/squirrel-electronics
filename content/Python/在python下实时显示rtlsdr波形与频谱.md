@@ -1,5 +1,6 @@
 Title: 在python下实时显示rtlsdr波形与频谱
 Date: 2015-04-10 17:18
+Modified: 2017-01-15 14:55
 Category: Python
 Tags: Matplotlib,rtlsdr,python
 Summary: 系列文章之第三, 本文中用之前学到的方法实时显示从rtl-sdr读取到的数据. 也就是简单的把信号源从麦克风换为rtl-sdr.
@@ -18,7 +19,7 @@ Summary: 系列文章之第三, 本文中用之前学到的方法实时显示从
 
 之前已经实现了从声卡读取数据再显示, 那么现在用在rtlsdr上, 就只是读数据接口的问题, 只要把读取数据的接口换成rtlsdr的, 外加一些数据转换, 就OK.
 
-这里用的python库是[pyrtlsdr](https://github.com/roger-/pyrtlsdr)试用了一下两个例子, [demo_waterfall.py](https://github.com/roger-/pyrtlsdr/blob/master/demo_waterfall.py) 都做成这个高级样子了... 当然我自己的还是要继续写的.
+这里用的python库是[pyrtlsdr](https://github.com/roger-/pyrtlsdr),试用了一下它的例子, [demo_waterfall.py](https://github.com/roger-/pyrtlsdr/blob/master/demo_waterfall.py)这个都做成下图这个高级样子了...
 
 ![demo_waterfall.py运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/1.JPG)
 
@@ -80,7 +81,7 @@ fft_temp_data=fftpack.fft(data,overwrite_x=True)
 fft_data=np.abs(fft_temp_data)[0:fft_temp_data.size]    #计算幅度
 ```
 
-数据处理过程如上, 然后我把接收频率(center frequency)调整到先锋89.8附近, 以它为基准, 看看调整接收频率先锋89.8会往哪个方向移动.
+数据处理过程如上, 然后我把接收频率(center frequency)调整到先锋FM89.8附近, 以它为基准, 看看调整接收频率先锋89.8会往哪个方向移动.
 
 ![COMPLEX INPUT FFT 分析]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/2.png)
 

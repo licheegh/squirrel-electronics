@@ -1,6 +1,6 @@
 Title: 在Python下实时显示麦克风波形与频谱
 Date: 2015-04-09 18:50
-Modified: 2015-11-12 12:00
+Modified: 2017-01-15 14:51
 Category: Python
 Tags: Matplotlib,pyaudio,python
 Summary: 系列文章之第二, 本文中用之前学到的方法实时显示从pyaudio读取到的麦克风数据.
@@ -71,9 +71,9 @@ def read_audio_thead(q,stream,frames,ad_rdy_ev):
 
 ###显示部分
 
-我在显示随机数的那个框架([用Matplotlib显示实时信号]({filename}用Matplotlib显示实时信号.md))上, 改成了显示两个axes, 一个是实时波形, 另一个是fft. 且fft这个图的y轴指数的.  
-另外我用tkinter做了一个只有一个按钮(quit)的小界面, 这样可以控制程序在想退出的时候关闭.
+我在显示随机数的那个框架([用Matplotlib显示实时信号]({filename}用Matplotlib显示实时信号.md))上做了一些修改, 改成了显示两个axes, 一个是实时波形, 另一个是fft. 且fft这个图的y轴指数的.  
+另外我用tkinter做了一个只有退出按钮的小界面, 这样可以控制程序在想退出的时候关闭.
 
 ---
 
-这个程序我分别的xp环境下的命令行环境和spyder都测试了一下, OK, 但在命令行环境时, tkinter的界面会在把matplotlib的窗口关掉才弹出来. 我感觉是在这个状态下matplotlib是会在`plt.show()`时会block, 原因未知.
+这个程序我分别的xp环境下的cmd命令行环境和spyder中都测试了一下, OK, 但在命令行环境时, tkinter的界面会在matplotlib的窗口关掉后才弹出来. 我感觉是在matplotlib会在`plt.show()`时block住程序执行, 其原因未知.
