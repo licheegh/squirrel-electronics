@@ -21,7 +21,8 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "squirrel-electronics"
-#GOOGLE_ANALYTICS_UNIVERSAL = "UA-65976997-1"
+GOOGLE_ANALYTICS_UNIVERSAL = "UA-90548790-1"
+GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY = "auto"
 
 
 #PLUGIN_PATHS = ['my_plugins']
