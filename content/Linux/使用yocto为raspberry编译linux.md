@@ -1,10 +1,10 @@
 Title: 使用yocto为raspberry编译linux
 Date: 2017-03-12 22:40
-Modified: 2017-03-13 14:00
+Modified: 2017-03-19 23:00
 Category: Linux
 Summary: 由于工作的关系需要搞一下yocto，看过介绍觉得这很适合嵌入式应用，个人感觉和openwrt很像。手里有个树莓派，当然最简单的就是先为它编译一个linux系统玩玩。
 
-电脑是一台debian，已刷最新，树梅派为古老的model B。
+电脑是一台debian，已刷最新，树莓派为古老的model B。
 
 [yocto](https://www.yoctoproject.org/downloads)网站最新的版本是morty 2.2.1，当然我们要用git clone的方式来获取最新的，但直接clone发现速度只有几kb。我记得我的git是有走socks5的呀～经研究发现git://这种开头的和https://开头的并不一样，通过<https://gist.github.com/laispace/666dd7b27e9116faece6>
 
@@ -442,5 +442,9 @@ raspberrypi login: root
 root@raspberrypi:~# 
 ```
 
+Reference:
+
+* [Building Raspberry Pi Systems with Yocto](http://www.jumpnowtek.com/rpi/Raspberry-Pi-Systems-with-Yocto.html)
+* [Build a Raspberry Pi 2 Minimal Image with The Yocto Project](http://www.cnx-software.com/2015/02/27/yocto-project-raspberry-pi-2-board-minimal-image/)
 
 
