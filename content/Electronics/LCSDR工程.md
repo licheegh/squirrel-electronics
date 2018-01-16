@@ -1,6 +1,6 @@
 Title: LCSDR工程
 Date: 2015-11-01 12:00
-Modified: 2015-12-07 12:00
+Modified: 2018-01-16 12:00
 Category: Electronics
 Tags: FPGA
 Summary: 该工程的最新进展, 图片, 程序等.
@@ -61,7 +61,34 @@ HQPCB加收了50块的BGA费, 结果还是歪的么?
 
 ###调试软件
 
-一开始我调的就是USB芯片FX2 cy7c68013a(因为怕layout的有问题影响性能or直接连不上). 可以连上, 于是跑个分吧~(cystreamer测速), fw需要小改动, 去掉LED显示什么的, 只有16MB/s么? 好低啊~这是咋回事?
+一开始我调的就是USB芯片FX2 cy7c68013a(因为怕layout的有问题影响性能or直接连不上). 可以连上, 于是跑个分吧~使用AN4053的CYStreamer例程，这个例程包括一个上位机软件和fx2的fw，注意上位机软件在AN4053里的比较新，可以显示cpu占用率，另外要注意的是fx2的fw需要注释掉以下内容，因为它是设计在开发板上运行的，而显示是一个I2C的接口，如果运行到这里会死机。
+
+```diff
+diff --git a/CYStream.c b/CYStream.c
+index 47a80c0..0aaee3b 100644
+--- a/CYStream.c
++++ b/CYStream.c
+@@ -677,12 +677,12 @@ BOOL DR_SetInterface(void)       // Called when a Set Interface command is recei
+        }
+
+    // Update the display to indicate the currently selected alt. Interface
+-       if(updateDisplay)
+-       {
+-          EZUSB_WriteI2C(LED_ADDR, 0x01, &(Digit[AlternateSetting]));
+-          EZUSB_WaitForEEPROMWrite(LED_ADDR);
+-          updateDisplay = FALSE;
+-       }
++       /*if(updateDisplay)*/^M
++       /*{*/^M
++          /*EZUSB_WriteI2C(LED_ADDR, 0x01, &(Digit[AlternateSetting]));*/^M
++          /*EZUSB_WaitForEEPROMWrite(LED_ADDR);*/^M
++          /*updateDisplay = FALSE;*/^M
++       /*}*/^M
+
+    return(TRUE);            // Handled by user code
+```
+
+只有16MB/s么? 好低啊~这是咋回事?
 
 ![LCSDR cystreamer test][10]
 
