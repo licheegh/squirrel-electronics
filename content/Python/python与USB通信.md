@@ -1,6 +1,6 @@
 Title: python与USB通信
 Date: 2015-11-04 12:13
-Modified: 2015-11-12 12:00
+Modified: 2018-01-17 12:00
 Category: Python
 Tags: USB, Python
 Summary: 上位机与CY7C68013A的USB通信, 自然是要用Python来完成.
@@ -8,6 +8,8 @@ Summary: 上位机与CY7C68013A的USB通信, 自然是要用Python来完成.
 [TOC]
 
 ---
+
+本文提到的代码位于[LCSDR的github中](https://github.com/licheegh/LCSDR)。
 
 首先当然是看看在硬件设计阶段[选择用于低成本软件无线电的FPGA]({filename}../Electronics/选择用于低成本软件无线电的FPGA.md)查到的[PyUSB](https://walac.github.io/pyusb/).
 

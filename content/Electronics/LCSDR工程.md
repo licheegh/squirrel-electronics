@@ -9,7 +9,7 @@ Summary: 该工程的最新进展, 图片, 程序等.
 
 ---
 
-[本项目电路图，PCB , Gerber, BOM](https://github.com/licheegh/LCSDR)
+[本项目电路图，PCB，Gerber，BOM，FX2源码，FPGA源码，Python测试源码](https://github.com/licheegh/LCSDR)
 采用Kicad.
 
 ---
