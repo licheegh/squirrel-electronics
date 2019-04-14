@@ -1,1 +1,1 @@
-pelican content -D -s pelicanconf.py -t themes/pelican-bootstrap3 -r
+pelican content -D -s pelicanconf.py -t pelican-themes/pelican-bootstrap3 -r

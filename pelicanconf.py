@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
+#from __future__ import unicode_literals
 
 AUTHOR = '小松鼠攻城师'
 SITENAME = 'Squirrel Electronics'
@@ -53,6 +53,7 @@ EXTRA_PATH_METADATA = {
 #FAVICON = 'extra/favicon.ico'
 
 # Theme Settings
+# THEME = "pelican-themes/pelican-bootstrap3"
 SHOW_ARTICLE_AUTHOR = False
 #CUSTOM_CSS = 'static/custom.css'
 #BOOTSTRAP_FLUID = False
@@ -120,15 +121,20 @@ CC_LICENSE = "CC-BY-NC-SA"
 
 BANNER = 'images/logo.jpg'
 
-PLUGIN_PATHS = ['my_plugins']
+PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [ 
             #'render_math',
             #'better_codeblock_line_numbering'
             #'tipue_search'
             #'pelican-toc',
             'bootstrapify',
+            'i18n_subsites',
             'tag_cloud'
 ]
+
+JINJA_ENVIRONMENT = {
+    'extensions': ['jinja2.ext.i18n'],
+}
 
 BOOTSTRAPIFY = {
     'table': ['table','table-bordered','table-hover','table-striped','table-responsive'],
