@@ -180,10 +180,10 @@ OK, 那也就是说, 老一代的3系列产品在价格上并没有优势, 而�
 2. ADC部分.
 3. 其他外围器件.
 
-[1]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/1.jpg
-[2]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/2.jpg
-[3]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/3.png
-[4]: {filename}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/4.png
+[1]: {static}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/1.jpg
+[2]: {static}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/2.jpg
+[3]: {static}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/3.png
+[4]: {static}../images/xuan-ze-yong-yu-di-cheng-ben-ruan-jian-wu-xian-dian-de-fpga/4.png
 
 [^1]: 这一行数据主要来自各自器件的DC and AC switching characteristic中的Recommended Operating Conditions.
 [^2]: 根据ug482, Chap 5, Pin Description and Design Guidelines, GTP的电源如不用可以接地. 根据ug480, Chap 1, Table 1-1, XADC如不用可以将电源与Vccaux接在一起. 那么IO + aux + int&bram就是三组电源, 当然如果IO用1.8v, 就可以减少到2组.

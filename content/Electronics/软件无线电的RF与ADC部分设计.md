@@ -10,7 +10,7 @@ Summary: 要设计一个低成本的软件无线电
 
 ###引言
 
-本文继续细化前文["选择用于低成本软件无线电的FPGA"]({filename}选择用于低成本软件无线电的FPGA.md)中的细节.
+本文继续细化前文["选择用于低成本软件无线电的FPGA"]({static}选择用于低成本软件无线电的FPGA.md)中的细节.
 
 目前我找到了3种方案.
 
@@ -170,19 +170,19 @@ http://www.xilinx.com/support/documentation/sw_manuals/xilinx14_7/isehelp_start.
 [CMX994](http://www.radiolocman.com/news/new.html?di=63542)
 
 
-[1]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/1.jpg
-[2]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/2.gif
-[3]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/3.gif
-[4]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/4.gif
-[5]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/5.jpg
-[6]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/6.jpg
-[7]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/7.jpg
-[8]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/8.jpg
-[9]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/9.jpg
-[10]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/10.jpg
-[11]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/11.png
-[12]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/12.png
-[13]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/13.png
-[14]: {filename}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/14.png
+[1]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/1.jpg
+[2]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/2.gif
+[3]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/3.gif
+[4]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/4.gif
+[5]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/5.jpg
+[6]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/6.jpg
+[7]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/7.jpg
+[8]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/8.jpg
+[9]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/9.jpg
+[10]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/10.jpg
+[11]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/11.png
+[12]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/12.png
+[13]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/13.png
+[14]: {static}../images/ruan-jian-wu-xian-dian-de-rfyu-adcbu-fen-she-ji/14.png
 
 [^1]: 这一行数据主要来自各自器件的DC and AC switching characteristic中的Recommended Operating Conditions.

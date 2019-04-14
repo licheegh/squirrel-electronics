@@ -6,16 +6,16 @@ Tags: Matplotlib,pyaudio,python
 Summary: 系列文章之第二, 本文中用之前学到的方法实时显示从pyaudio读取到的麦克风数据.
 
 
-1. [随机信号]({filename}用Matplotlib显示实时信号.md)
+1. [随机信号]({static}用Matplotlib显示实时信号.md)
 2. 麦克风频谱图 <- 本文内容
-3. [RTL-SDR频谱图]({filename}在python下实时显示rtlsdr波形与频谱.md)
-4. [FM解调]({filename}在python下通过RTLSDR收听FM广播.md)
+3. [RTL-SDR频谱图]({static}在python下实时显示rtlsdr波形与频谱.md)
+4. [FM解调]({static}在python下通过RTLSDR收听FM广播.md)
 
 [本文程序](https://github.com/licheegh/dig_sig_py_study/blob/master/Analyse_Microphone/audio_fft.py)
 
 运行截图
 
-![程序运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-mai-ke-feng-bo-xing-yu-pin-pu/1.gif)
+![程序运行截图]({static}../images/zai-pythonxia-shi-shi-xian-shi-mai-ke-feng-bo-xing-yu-pin-pu/1.gif)
 
 在上一篇中已经实现了实时显示随机的信号, 那么要实现麦克风的音频信号显示, 待实现的就是:
 
@@ -71,7 +71,7 @@ def read_audio_thead(q,stream,frames,ad_rdy_ev):
 
 ###显示部分
 
-我在显示随机数的那个框架([用Matplotlib显示实时信号]({filename}用Matplotlib显示实时信号.md))上做了一些修改, 改成了显示两个axes, 一个是实时波形, 另一个是fft. 且fft这个图的y轴指数的.  
+我在显示随机数的那个框架([用Matplotlib显示实时信号]({static}用Matplotlib显示实时信号.md))上做了一些修改, 改成了显示两个axes, 一个是实时波形, 另一个是fft. 且fft这个图的y轴指数的.  
 另外我用tkinter做了一个只有退出按钮的小界面, 这样可以控制程序在想退出的时候关闭.
 
 ---

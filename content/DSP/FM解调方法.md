@@ -5,7 +5,7 @@ Tags: fm解调
 Summary: 对3种不同的FM的数字解调方法进行了比较和研究.
 
 
-其实在之前的[在python下通过RTLSDR收听FM广播]({filename}../Python/在python下通过RTLSDR收听FM广播.md)文章中, 已经找到了3种不同的FM解调方法, 只是着急得到结果, 所以没有详细研究, 现在已经搞定收音, 因此仔细研究一下解调方法的区别.
+其实在之前的[在python下通过RTLSDR收听FM广播]({static}../Python/在python下通过RTLSDR收听FM广播.md)文章中, 已经找到了3种不同的FM解调方法, 只是着急得到结果, 所以没有详细研究, 现在已经搞定收音, 因此仔细研究一下解调方法的区别.
 
 根据[FM wikipedia](https://en.wikipedia.org/wiki/Frequency_modulation)的描述, 一般广播的调制范围为75kHz, 因此需要的采样率最低是150kHz, 那么我之前用的125kHz可以说是不恰当的, 由于是调频, 则波形应该是会受到削波.
 
@@ -19,11 +19,11 @@ Summary: 对3种不同的FM的数字解调方法进行了比较和研究.
 
 因此就有了书中介绍的一堆简单的FIR滤波器.
 
-OK, 绕了一圈回到FM解调上, 可以看到上面这个方法需要加上一个unwrap, 这是由于角度不连续造成的, 在[在python下实时显示rtlsdr波形与频谱]({filename}../Python/在python下实时显示rtlsdr波形与频谱.md)中有截图. 那么如果换一种方法, 先求差, 然后再求角度, 这样是否就避免了这个问题呢? 在[阅读librtlsdr中的rtl_fm程序]({filename}../DSP/阅读librtlsdr中的rtl_fm程序.md)中, 该程序就是采取的这个方法, 用当前sample乘后边sample的共轭, 然后再求atan2, 这样子每个角度都是从0度开始, 则不超过360度都不需要特殊处理.
+OK, 绕了一圈回到FM解调上, 可以看到上面这个方法需要加上一个unwrap, 这是由于角度不连续造成的, 在[在python下实时显示rtlsdr波形与频谱]({static}../Python/在python下实时显示rtlsdr波形与频谱.md)中有截图. 那么如果换一种方法, 先求差, 然后再求角度, 这样是否就避免了这个问题呢? 在[阅读librtlsdr中的rtl_fm程序]({static}../DSP/阅读librtlsdr中的rtl_fm程序.md)中, 该程序就是采取的这个方法, 用当前sample乘后边sample的共轭, 然后再求atan2, 这样子每个角度都是从0度开始, 则不超过360度都不需要特殊处理.
 
 还有一种方法是在Lyons的书中发现的, 位于13章的第22个, 在进行了一些导数的[固定运算](https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0)后得出了一个奇怪的式子.
 
-![FM解调公式]({filename}../images/fmjie-diao-fang-fa/1.png)
+![FM解调公式]({static}../images/fmjie-diao-fang-fa/1.png)
 
 说实话, 我在这东西上面卡了好久, 推导过程是清晰明了的, 我在实际程序里也试用效果和上面两个差不多, 在网上翻了几天没啥发现, 我觉得自己研究一下, 于是我自造了几个数, 让这几个算法去解调.
 

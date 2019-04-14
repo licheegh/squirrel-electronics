@@ -55,11 +55,11 @@ KPW的主板是有预留出linux下调试用的tty接口的, 所谓的tty也就�
 最后上一张KPW3的PCB图, 来自ZOL.
 
 
-[1]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/1.png
-[2]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/2.jpg
-[3]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/3.jpg
-[4]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/4.jpg
-[5]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/5.png
-[6]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/6.png
-[7]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/7.jpg
-[8]: {filename}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/8.jpg
+[1]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/1.png
+[2]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/2.jpg
+[3]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/3.jpg
+[4]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/4.jpg
+[5]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/5.png
+[6]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/6.png
+[7]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/7.jpg
+[8]: {static}../images/yi-ci-bu-cheng-gong-de-kindlewei-xiu/8.jpg

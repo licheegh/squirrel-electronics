@@ -95,4 +95,4 @@ Error: authentication failed, system busy
 这时密码错误的问题得到了确认，我发的密码转为base64后确实是错了，研究后发现要在git的配置中的密码上加单引号，包括其他一些直接输入密码的地方都要加，除非密码比较简单。
 
 
-[1]: {filename}../images/smtptiao-shi-bi-ji/1.jpg
+[1]: {static}../images/smtptiao-shi-bi-ji/1.jpg

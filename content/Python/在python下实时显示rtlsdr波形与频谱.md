@@ -6,22 +6,22 @@ Tags: Matplotlib,rtlsdr,python
 Summary: 系列文章之第三, 本文中用之前学到的方法实时显示从rtl-sdr读取到的数据. 也就是简单的把信号源从麦克风换为rtl-sdr.
 
 
-1. [随机信号]({filename}用Matplotlib显示实时信号.md)
-2. [麦克风频谱图]({filename}在python下实时显示麦克风波形与频谱.md)
+1. [随机信号]({static}用Matplotlib显示实时信号.md)
+2. [麦克风频谱图]({static}在python下实时显示麦克风波形与频谱.md)
 3. RTL-SDR频谱图 <- 本文内容
-4. [FM解调]({filename}在python下通过RTLSDR收听FM广播.md)
+4. [FM解调]({static}在python下通过RTLSDR收听FM广播.md)
 
 [本文程序](https://github.com/licheegh/dig_sig_py_study/blob/master/RTL_PY/sdr_fft.py)
 
 运行截图
 
-![程序运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/4.png)
+![程序运行截图]({static}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/4.png)
 
 之前已经实现了从声卡读取数据再显示, 那么现在用在rtlsdr上, 就只是读数据接口的问题, 只要把读取数据的接口换成rtlsdr的, 外加一些数据转换, 就OK.
 
 这里用的python库是[pyrtlsdr](https://github.com/roger-/pyrtlsdr),试用了一下它的例子, [demo_waterfall.py](https://github.com/roger-/pyrtlsdr/blob/master/demo_waterfall.py)这个都做成下图这个高级样子了...
 
-![demo_waterfall.py运行截图]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/1.JPG)
+![demo_waterfall.py运行截图]({static}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/1.JPG)
 
 我在test.py中看到有这么个函数, 嗯~这不是和pyaudio中的一样嘛, 于是我兴高采烈的换上去试了一下.
 
@@ -83,11 +83,11 @@ fft_data=np.abs(fft_temp_data)[0:fft_temp_data.size]    #计算幅度
 
 数据处理过程如上, 然后我把接收频率(center frequency)调整到先锋FM89.8附近, 以它为基准, 看看调整接收频率先锋89.8会往哪个方向移动.
 
-![COMPLEX INPUT FFT 分析]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/2.png)
+![COMPLEX INPUT FFT 分析]({static}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/2.png)
 
 首先在设定为90MHz时, 先锋位于右半边, 也就是传说中的负频率部分, 如果是实输入信号, 则这部分与左半边是重复的. 当增加接收频率时, 先锋向左移动. OK, 那么首先89.8MHz离我们设定的90MHz的距离是-0.2MHz, 当增加到90.1MHz时,距离为-0.3MHz, 那么也就是说这里就是传说中的负频率部分, 这部分的最右边是设定的接收频率, 最左边是接收频率减去采样率的一半, 也就是89.5MHz(90MHz).在最后一张图中,当设定接收频率小于89.8MHz时, 先锋就跑到正频率的部分里.
 
-![负频率部分说明]({filename}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/3.png)
+![负频率部分说明]({static}../images/zai-pythonxia-shi-shi-xian-shi-rtlsdrbo-xing-yu-pin-pu/3.png)
 
 应当注意的是, 这里我们设定的接收频率是更改的接收电路的本振频率以及一些滤波器的参数, 与采样部分没有什么关系, 采样部分始终都是以8-bit 1MSPS的速度进行采样.
 

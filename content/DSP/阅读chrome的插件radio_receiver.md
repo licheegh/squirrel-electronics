@@ -94,7 +94,7 @@ OK, 清晰明了, 那么我们开始挨个研究吧~
       var imag = lI * Q[i] - I[i] * lQ;
 ```
 
-这个算法是和[阅读librtlsdr中的rtl_fm程序]({filename}阅读librtlsdr中的rtl_fm程序.md)中用的方法完全一致, 也就是[FM解调方法]({filename}FM解调方法.md)中的方案2: **求角度差->atan2**. 详细情况见第一篇文章中的分析.
+这个算法是和[阅读librtlsdr中的rtl_fm程序]({static}阅读librtlsdr中的rtl_fm程序.md)中用的方法完全一致, 也就是[FM解调方法]({static}FM解调方法.md)中的方案2: **求角度差->atan2**. 详细情况见第一篇文章中的分析.
 
 那么接下来是求atan2, 但atan2是很费cpu的, 因此Jacobo似乎是用了近似的方法, 因此先根据real和imag的值来判断角度在哪个象限, 然后再进行估算.
 
@@ -249,7 +249,7 @@ plot(cos)
 
 ![chrome debug radio receiver][5]
 
-然后证实了sin和cos确实是一个差不多18个sample每周期的信号, 而初始化的那个SIN[]和COS[]也确实是个斜线. 然后第二日的早晨, 我这脑袋忽然开窍了, `out[i] * sin` 我去这不是求19k的相位差的方法吗? 见关于US6901146的描述[FM立体声解调方法研究]({filename}FM立体声解调方法研究.md) 19k的本振乘上输入(包含L+R,L-R,19k), 结果就是低频以及DC成分就是两个19k的相位差, 因此根据这个来调整本振就可以了. 也就是说, **hdev和vdev分别是本振I和Q的相位差, 而average就是所谓的LPF**. 附上用到的三角恒等式.
+然后证实了sin和cos确实是一个差不多18个sample每周期的信号, 而初始化的那个SIN[]和COS[]也确实是个斜线. 然后第二日的早晨, 我这脑袋忽然开窍了, `out[i] * sin` 我去这不是求19k的相位差的方法吗? 见关于US6901146的描述[FM立体声解调方法研究]({static}FM立体声解调方法研究.md) 19k的本振乘上输入(包含L+R,L-R,19k), 结果就是低频以及DC成分就是两个19k的相位差, 因此根据这个来调整本振就可以了. 也就是说, **hdev和vdev分别是本振I和Q的相位差, 而average就是所谓的LPF**. 附上用到的三角恒等式.
 
 ![trigonometric identities Product-to-sum][8]
 
@@ -317,14 +317,14 @@ FM解调的方法:   求角度差->求arctan, 这里arctan是用的近似的算�
 
 Jacobo作为一个google的js工程师真是厉害呀, 果然去google工作的都是牛人.
 
-[1]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/1.gif
-[2]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/2.png
-[3]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/3.png
-[4]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/4.png
-[5]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/5.png
-[6]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/6.png
-[7]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/7.png
-[8]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/8.png
-[9]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/9.png
-[10]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/10.png
-[11]: {filename}../images/yue-du-chromede-cha-jian-radio_receiver/11.png
+[1]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/1.gif
+[2]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/2.png
+[3]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/3.png
+[4]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/4.png
+[5]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/5.png
+[6]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/6.png
+[7]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/7.png
+[8]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/8.png
+[9]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/9.png
+[10]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/10.png
+[11]: {static}../images/yue-du-chromede-cha-jian-radio_receiver/11.png

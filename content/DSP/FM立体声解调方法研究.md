@@ -135,7 +135,7 @@ ok, 看到BTSC和我们这个还是有区别, 看ADI的意思, 这个就需要PL
 
 然后...然后TI给出了源代码...而且每个语句都有注释, TI这是啥意思? 发个专利专门宣传C30这个DSP吗? 另外关键算法竟然是用汇编写的, 于是我默默打开了[TMS320C3x User’s Guide](http://www.ti.com/lit/ug/spru031f/spru031f.pdf)
 
-![US5471534 pilot assembly code]({filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/11.png)
+![US5471534 pilot assembly code][11]
 
 MPYF 的意思是后边两个浮点数相乘, 放在后面的寄存器里.  
 LDF load float, 前放后.  
@@ -301,32 +301,32 @@ CN1826741A 是中文版, 看到配图我也是醉了. 飞利浦你想怎么样?
 
 
 
-[1]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/1.png
-[2]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/2.png
-[3]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/3.png
-[4]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/4.png
-[5]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/5.png
-[6]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/6.png
-[7]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/7.png
-[8]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/8.png
-[9]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/9.png
-[10]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/10.png
-[11]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/11.png
-[12]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/12.png
-[13]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/13.png
-[14]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/14.png
-[15]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/15.png
-[16]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/16.png
-[17]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/17.png
-[18]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/18.png
-[19]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/19.png
-[20]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/20.png
-[21]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/21.png
-[22]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/22.png
-[23]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/23.png
-[24]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/24.png
-[25]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/25.png
-[26]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/26.png
-[27]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/27.png
-[28]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/28.gif
-[29]: {filename}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/29.gif
+[1]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/1.png
+[2]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/2.png
+[3]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/3.png
+[4]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/4.png
+[5]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/5.png
+[6]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/6.png
+[7]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/7.png
+[8]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/8.png
+[9]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/9.png
+[10]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/10.png
+[11]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/11.png
+[12]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/12.png
+[13]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/13.png
+[14]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/14.png
+[15]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/15.png
+[16]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/16.png
+[17]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/17.png
+[18]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/18.png
+[19]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/19.png
+[20]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/20.png
+[21]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/21.png
+[22]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/22.png
+[23]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/23.png
+[24]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/24.png
+[25]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/25.png
+[26]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/26.png
+[27]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/27.png
+[28]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/28.gif
+[29]: {static}../images/fmli-ti-sheng-jie-diao-fang-fa-yan-jiu/29.gif

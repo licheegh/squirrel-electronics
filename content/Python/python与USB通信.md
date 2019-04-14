@@ -11,7 +11,7 @@ Summary: 上位机与CY7C68013A的USB通信, 自然是要用Python来完成.
 
 本文提到的代码位于[LCSDR的github中](https://github.com/licheegh/LCSDR)。
 
-首先当然是看看在硬件设计阶段[选择用于低成本软件无线电的FPGA]({filename}../Electronics/选择用于低成本软件无线电的FPGA.md)查到的[PyUSB](https://walac.github.io/pyusb/).
+首先当然是看看在硬件设计阶段[选择用于低成本软件无线电的FPGA]({static}../Electronics/选择用于低成本软件无线电的FPGA.md)查到的[PyUSB](https://walac.github.io/pyusb/).
 
 PyUSB依赖于一些USB的驱动程序, 这个貌似叫做[无驱驱动](http://wenku.baidu.com/view/98ebaf4a2b160b4e767fcfbe.html), 其中libusb是一统天下者, 当然就要用这个咯. 那么问题来了, libusb这个驱动是怎么装到要开发的设备上呢? 在windows下答案是[Zadig](http://zadig.akeo.ie/), 这个和rtlsdr用的方案是一致的.
 
@@ -104,17 +104,17 @@ always@(*) begin
 
 ![data send from fpga to python pyusb controlled by encoder][11]
 
-Python显示实时数据的框架由之前[在python下实时显示麦克风波形与频谱]({filename}在python下实时显示麦克风波形与频谱.md)提供. 将数据源从pyaudio换为PyUSB, 搞定.
+Python显示实时数据的框架由之前[在python下实时显示麦克风波形与频谱]({static}在python下实时显示麦克风波形与频谱.md)提供. 将数据源从pyaudio换为PyUSB, 搞定.
 
 
-[1]: {filename}../images/pythonyu-usbtong-xin/1.png
-[2]: {filename}../images/pythonyu-usbtong-xin/2.png
-[3]: {filename}../images/pythonyu-usbtong-xin/3.png
-[4]: {filename}../images/pythonyu-usbtong-xin/4.png
-[5]: {filename}../images/pythonyu-usbtong-xin/5.png
-[6]: {filename}../images/pythonyu-usbtong-xin/6.png
-[7]: {filename}../images/pythonyu-usbtong-xin/7.png
-[8]: {filename}../images/pythonyu-usbtong-xin/8.png
-[9]: {filename}../images/pythonyu-usbtong-xin/9.png
-[10]: {filename}../images/pythonyu-usbtong-xin/10.png
-[11]: {filename}../images/pythonyu-usbtong-xin/11.gif
+[1]: {static}../images/pythonyu-usbtong-xin/1.png
+[2]: {static}../images/pythonyu-usbtong-xin/2.png
+[3]: {static}../images/pythonyu-usbtong-xin/3.png
+[4]: {static}../images/pythonyu-usbtong-xin/4.png
+[5]: {static}../images/pythonyu-usbtong-xin/5.png
+[6]: {static}../images/pythonyu-usbtong-xin/6.png
+[7]: {static}../images/pythonyu-usbtong-xin/7.png
+[8]: {static}../images/pythonyu-usbtong-xin/8.png
+[9]: {static}../images/pythonyu-usbtong-xin/9.png
+[10]: {static}../images/pythonyu-usbtong-xin/10.png
+[11]: {static}../images/pythonyu-usbtong-xin/11.gif

@@ -146,12 +146,12 @@ ERROR:Simulator:702
 
 未完待续.
 
-[1]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/1.png
-[2]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/2.png
-[3]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/3.png
-[4]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/4.png
-[5]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/5.png
-[6]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/6.png
-[7]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/7.png
-[8]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/8.png
-[9]: {filename}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/9.png
+[1]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/1.png
+[2]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/2.png
+[3]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/3.png
+[4]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/4.png
+[5]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/5.png
+[6]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/6.png
+[7]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/7.png
+[8]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/8.png
+[9]: {static}../images/yong-verilogxiang-isejie-shi-shu-zi-dian-lu/9.png

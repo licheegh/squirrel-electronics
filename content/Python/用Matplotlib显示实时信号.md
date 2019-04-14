@@ -20,9 +20,9 @@ Summary: 系列文章之第一, 怎样在python环境中最简单的实现实时
 我的路线图:
 
 1. 随机信号  <- 本文内容
-2. [麦克风频谱图]({filename}在python下实时显示麦克风波形与频谱.md)
-3. [RTL-SDR频谱图]({filename}在python下实时显示rtlsdr波形与频谱.md)
-4. [FM解调]({filename}在python下通过RTLSDR收听FM广播.md)
+2. [麦克风频谱图]({static}在python下实时显示麦克风波形与频谱.md)
+3. [RTL-SDR频谱图]({static}在python下实时显示rtlsdr波形与频谱.md)
+4. [FM解调]({static}在python下通过RTLSDR收听FM广播.md)
 
 ##实现
 

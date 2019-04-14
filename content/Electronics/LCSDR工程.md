@@ -172,25 +172,25 @@ PC-FX2-FPGA loopback 搞定. 上位机使用Python的PyUSB.
 
 未完待续.
 
-[1]: {filename}../images/lcsdrgong-cheng/1.jpg
-[2]: {filename}../images/lcsdrgong-cheng/2.jpg
-[3]: {filename}../images/lcsdrgong-cheng/3.jpg
-[4]: {filename}../images/lcsdrgong-cheng/4.jpg
-[5]: {filename}../images/lcsdrgong-cheng/5.jpg
-[6]: {filename}../images/lcsdrgong-cheng/6.jpg
-[7]: {filename}../images/lcsdrgong-cheng/7.jpg
-[8]: {filename}../images/lcsdrgong-cheng/8.jpg
-[9]: {filename}../images/lcsdrgong-cheng/9.jpg
-[10]: {filename}../images/lcsdrgong-cheng/10.png
-[11]: {filename}../images/lcsdrgong-cheng/11.png
-[12]: {filename}../images/lcsdrgong-cheng/12.png
-[13]: {filename}../images/lcsdrgong-cheng/13.jpg
-[14]: {filename}../images/lcsdrgong-cheng/14.jpg
-[15]: {filename}../images/lcsdrgong-cheng/15.png
-[16]: {filename}../images/lcsdrgong-cheng/16.png
-[17]: {filename}../images/lcsdrgong-cheng/17.gif
-[18]: {filename}../images/lcsdrgong-cheng/18.gif
-[19]: {filename}../images/lcsdrgong-cheng/19.jpg
-[20]: {filename}../images/lcsdrgong-cheng/20.jpg
-[21]: {filename}../images/lcsdrgong-cheng/21.jpg
-[22]: {filename}../images/lcsdrgong-cheng/22.png
+[1]: {static}../images/lcsdrgong-cheng/1.jpg
+[2]: {static}../images/lcsdrgong-cheng/2.jpg
+[3]: {static}../images/lcsdrgong-cheng/3.jpg
+[4]: {static}../images/lcsdrgong-cheng/4.jpg
+[5]: {static}../images/lcsdrgong-cheng/5.jpg
+[6]: {static}../images/lcsdrgong-cheng/6.jpg
+[7]: {static}../images/lcsdrgong-cheng/7.jpg
+[8]: {static}../images/lcsdrgong-cheng/8.jpg
+[9]: {static}../images/lcsdrgong-cheng/9.jpg
+[10]: {static}../images/lcsdrgong-cheng/10.png
+[11]: {static}../images/lcsdrgong-cheng/11.png
+[12]: {static}../images/lcsdrgong-cheng/12.png
+[13]: {static}../images/lcsdrgong-cheng/13.jpg
+[14]: {static}../images/lcsdrgong-cheng/14.jpg
+[15]: {static}../images/lcsdrgong-cheng/15.png
+[16]: {static}../images/lcsdrgong-cheng/16.png
+[17]: {static}../images/lcsdrgong-cheng/17.gif
+[18]: {static}../images/lcsdrgong-cheng/18.gif
+[19]: {static}../images/lcsdrgong-cheng/19.jpg
+[20]: {static}../images/lcsdrgong-cheng/20.jpg
+[21]: {static}../images/lcsdrgong-cheng/21.jpg
+[22]: {static}../images/lcsdrgong-cheng/22.png

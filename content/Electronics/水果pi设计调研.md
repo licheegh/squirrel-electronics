@@ -87,4 +87,4 @@ i.MX6ul确实是省电的王者，使用A7处理器本身就很有优势，全�
 而将要出的imx7ulp则是nxp还未推出的处理器，据称采用更好的制程（28nm FD-SOI）来获得更好的省电效果。但这封装和电源真的是不省心，虽然有单配的PMIC。
 而imx7系列都具有的M4+A7这种搭配确实是很适合某些类型的应用。
 
-[1]: {filename}../images/shui-guo-pishe-ji-diao-yan/1.png
+[1]: {static}../images/shui-guo-pishe-ji-diao-yan/1.png
