@@ -42,5 +42,3 @@ SITEMAP = {
             'pages': 'monthly'
             }
         }
-
-DELETE_OUTPUT_DIRECTORY = True
