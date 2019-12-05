@@ -12,7 +12,7 @@ TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh'
 #LOCALE = ['zh_CN.UTF-8','en_HK.UTF-8']
-LOCALE = ('chn','usa',
+LOCALE = (
         'zh_CN','en_US'
         )
 
