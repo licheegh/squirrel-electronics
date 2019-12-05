@@ -1,2 +1,2 @@
-pelican content -D -s pelicanconf.py -t themes\pelican-bootstrap3
+pelican content -s pelicanconf.py -t pelican-themes\pelican-bootstrap3
 pause
